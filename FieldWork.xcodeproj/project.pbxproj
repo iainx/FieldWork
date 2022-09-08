@@ -14,6 +14,56 @@
 		AE0335E42883404000C22F7D /* FieldWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0335E32883404000C22F7D /* FieldWorkTests.swift */; };
 		AE0335EE2883404000C22F7D /* FieldWorkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0335ED2883404000C22F7D /* FieldWorkUITests.swift */; };
 		AE0335F02883404000C22F7D /* FieldWorkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0335EF2883404000C22F7D /* FieldWorkUITestsLaunchTests.swift */; };
+		AE0335FD288444FA00C22F7D /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0335FC288444FA00C22F7D /* SidebarView.swift */; };
+		AE0335FF2884457100C22F7D /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0335FE2884457100C22F7D /* InfoView.swift */; };
+		AE0336012884459C00C22F7D /* SampleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0336002884459C00C22F7D /* SampleEditor.swift */; };
+		AE0336032884973100C22F7D /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0336022884973100C22F7D /* EditorView.swift */; };
+		AE0AAC1928C3F0BA00B4345D /* ISample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AAC1828C3F0BA00B4345D /* ISample.swift */; };
+		AE1B8967289EFBB800FB8BF8 /* SampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B8966289EFBB800FB8BF8 /* SampleView.swift */; };
+		AE1B896A289F0B8E00FB8BF8 /* BindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B8969289F0B8E00FB8BF8 /* BindingExtensions.swift */; };
+		AE1B896C289FB8DE00FB8BF8 /* RecordingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B896B289FB8DE00FB8BF8 /* RecordingModel.swift */; };
+		AE6DD6F0289AF9A700EF3B4A /* FileCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD6EF289AF9A700EF3B4A /* FileCommands.swift */; };
+		AE6DD6F2289AF9DE00EF3B4A /* ImportCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD6F1289AF9DE00EF3B4A /* ImportCommand.swift */; };
+		AE6DD705289D094900EF3B4A /* MLNSampleChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD6F5289D094700EF3B4A /* MLNSampleChannel.m */; };
+		AE6DD706289D094900EF3B4A /* MLNSampleBlockList.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD6F7289D094800EF3B4A /* MLNSampleBlockList.m */; };
+		AE6DD707289D094900EF3B4A /* pa_ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD6FB289D094800EF3B4A /* pa_ringbuffer.c */; };
+		AE6DD708289D094900EF3B4A /* MLNSampleBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD701289D094800EF3B4A /* MLNSampleBlock.m */; };
+		AE6DD709289D094900EF3B4A /* MLNSample.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD702289D094900EF3B4A /* MLNSample.m */; };
+		AE6DD70A289D094900EF3B4A /* MLNSampleChannelIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD703289D094900EF3B4A /* MLNSampleChannelIterator.m */; };
+		AE6DD70B289D094900EF3B4A /* MLNSampleBlockFile.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD704289D094900EF3B4A /* MLNSampleBlockFile.m */; };
+		AE6DD70E289D0A4400EF3B4A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD70C289D0A4400EF3B4A /* Constants.m */; };
+		AE6DD727289D0B3900EF3B4A /* MLNArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD710289D0B3700EF3B4A /* MLNArrayController.m */; };
+		AE6DD728289D0B3900EF3B4A /* MLNLoadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD711289D0B3700EF3B4A /* MLNLoadOperation.m */; };
+		AE6DD729289D0B3900EF3B4A /* MLNExportOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD713289D0B3700EF3B4A /* MLNExportOperation.m */; };
+		AE6DD72A289D0B3900EF3B4A /* MLNMMapRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD715289D0B3800EF3B4A /* MLNMMapRegion.m */; };
+		AE6DD72B289D0B3900EF3B4A /* MLNMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD718289D0B3800EF3B4A /* MLNMarker.m */; };
+		AE6DD72C289D0B3900EF3B4A /* MLNOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD719289D0B3800EF3B4A /* MLNOperation.m */; };
+		AE6DD72E289D0B3900EF3B4A /* MLNCacheFile.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD71D289D0B3800EF3B4A /* MLNCacheFile.m */; };
+		AE6DD732289D0B7900EF3B4A /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD730289D0B7900EF3B4A /* utils.m */; };
+		AE6DD735289D0D7F00EF3B4A /* MLNSampleBlockSilence.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD734289D0D7F00EF3B4A /* MLNSampleBlockSilence.m */; };
+		AE6DD73B289D106C00EF3B4A /* MLNExportableType.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD73A289D106C00EF3B4A /* MLNExportableType.m */; };
+		AE6DD73E289D22B900EF3B4A /* MLNCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD73D289D22B900EF3B4A /* MLNCacheManager.m */; };
+		AE764DC52885F9FF0060E6CC /* EditorModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE764DC42885F9FF0060E6CC /* EditorModePicker.swift */; };
+		AE839FCE28988331005F579C /* PreviewPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE839FCD28988331005F579C /* PreviewPersistenceController.swift */; };
+		AE90B32D28971BBE00EE6F72 /* RecordingMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B32C28971BBE00EE6F72 /* RecordingMetadata.swift */; };
+		AE90B32F28971E2500EE6F72 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B32E28971E2500EE6F72 /* PersistenceController.swift */; };
+		AE90B3312897224100EE6F72 /* TestablePersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B3302897224100EE6F72 /* TestablePersistenceController.swift */; };
+		AE90B3332897334800EE6F72 /* RecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B3322897334800EE6F72 /* RecordingService.swift */; };
+		AE90B335289737DD00EE6F72 /* RecordingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B334289737DD00EE6F72 /* RecordingServiceTests.swift */; };
+		AEA9C99A28A54DFF00A17F8A /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA9C99928A54DFF00A17F8A /* FileService.swift */; };
+		AEABCFF828A99BFE00711193 /* CaretView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABCFF728A99BFE00711193 /* CaretView.swift */; };
+		AEABCFFA28AB9C4500711193 /* Caret.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABCFF928AB9C4500711193 /* Caret.swift */; };
+		AEABD03528B76E3800711193 /* OverviewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABD03428B76E3800711193 /* OverviewBar.swift */; };
+		AEABD03728BC0BE600711193 /* SampleDrawingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABD03628BC0BE600711193 /* SampleDrawingHelper.swift */; };
+		AEABD03928BD52A800711193 /* FieldworkSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABD03828BD52A800711193 /* FieldworkSample.swift */; };
+		AEABD03B28BD597F00711193 /* FieldworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABD03A28BD597F00711193 /* FieldworkOperation.swift */; };
+		AEABD03D28BD5F8700711193 /* FieldworkLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABD03C28BD5F8700711193 /* FieldworkLoadOperation.swift */; };
+		AEABD04028BEAC0600711193 /* CoreaudioSampleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = AEABD03F28BEAC0600711193 /* CoreaudioSampleLoader.m */; };
+		AEABD04628C3303600711193 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABD04528C3303600711193 /* ProgressView.swift */; };
+		AEACA2B728C930AC00E19AE4 /* AVFoundationSampleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACA2B628C930AC00E19AE4 /* AVFoundationSampleLoader.swift */; };
+		AEACA2B928C938BE00E19AE4 /* ISampleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACA2B828C938BE00E19AE4 /* ISampleLoader.swift */; };
+		AEACA2BB28C93A9D00E19AE4 /* SampleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACA2BA28C93A9D00E19AE4 /* SampleMetadata.swift */; };
+		AEDE43C52887EC5800A16F66 /* FieldWorkModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AEDE43C32887EC5800A16F66 /* FieldWorkModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +95,83 @@
 		AE0335E92883404000C22F7D /* FieldWorkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FieldWorkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0335ED2883404000C22F7D /* FieldWorkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldWorkUITests.swift; sourceTree = "<group>"; };
 		AE0335EF2883404000C22F7D /* FieldWorkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldWorkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AE0335FC288444FA00C22F7D /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		AE0335FE2884457100C22F7D /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		AE0336002884459C00C22F7D /* SampleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleEditor.swift; sourceTree = "<group>"; };
+		AE0336022884973100C22F7D /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		AE0AAC1828C3F0BA00B4345D /* ISample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISample.swift; sourceTree = "<group>"; };
+		AE1B8966289EFBB800FB8BF8 /* SampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView.swift; sourceTree = "<group>"; };
+		AE1B8969289F0B8E00FB8BF8 /* BindingExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtensions.swift; sourceTree = "<group>"; };
+		AE1B896B289FB8DE00FB8BF8 /* RecordingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingModel.swift; sourceTree = "<group>"; };
+		AE6DD6EF289AF9A700EF3B4A /* FileCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCommands.swift; sourceTree = "<group>"; };
+		AE6DD6F1289AF9DE00EF3B4A /* ImportCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCommand.swift; sourceTree = "<group>"; };
+		AE6DD6F4289D094700EF3B4A /* FieldWork-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FieldWork-Bridging-Header.h"; sourceTree = "<group>"; };
+		AE6DD6F5289D094700EF3B4A /* MLNSampleChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNSampleChannel.m; sourceTree = "<group>"; };
+		AE6DD6F6289D094700EF3B4A /* pa_ringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pa_ringbuffer.h; sourceTree = "<group>"; };
+		AE6DD6F7289D094800EF3B4A /* MLNSampleBlockList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNSampleBlockList.m; sourceTree = "<group>"; };
+		AE6DD6F8289D094800EF3B4A /* MLNSampleChannelIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNSampleChannelIterator.h; sourceTree = "<group>"; };
+		AE6DD6F9289D094800EF3B4A /* MLNSampleChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNSampleChannel.h; sourceTree = "<group>"; };
+		AE6DD6FA289D094800EF3B4A /* MLNSampleBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNSampleBlock.h; sourceTree = "<group>"; };
+		AE6DD6FB289D094800EF3B4A /* pa_ringbuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pa_ringbuffer.c; sourceTree = "<group>"; };
+		AE6DD6FC289D094800EF3B4A /* MLNSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNSample.h; sourceTree = "<group>"; };
+		AE6DD6FD289D094800EF3B4A /* MLNSampleBlockList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNSampleBlockList.h; sourceTree = "<group>"; };
+		AE6DD6FE289D094800EF3B4A /* pa_memorybarrier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pa_memorybarrier.h; sourceTree = "<group>"; };
+		AE6DD6FF289D094800EF3B4A /* MLNSampleBlockFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNSampleBlockFile.h; sourceTree = "<group>"; };
+		AE6DD700289D094800EF3B4A /* MLNSampleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNSampleDelegate.h; sourceTree = "<group>"; };
+		AE6DD701289D094800EF3B4A /* MLNSampleBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNSampleBlock.m; sourceTree = "<group>"; };
+		AE6DD702289D094900EF3B4A /* MLNSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNSample.m; sourceTree = "<group>"; };
+		AE6DD703289D094900EF3B4A /* MLNSampleChannelIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNSampleChannelIterator.m; sourceTree = "<group>"; };
+		AE6DD704289D094900EF3B4A /* MLNSampleBlockFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNSampleBlockFile.m; sourceTree = "<group>"; };
+		AE6DD70C289D0A4400EF3B4A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		AE6DD70D289D0A4400EF3B4A /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		AE6DD710289D0B3700EF3B4A /* MLNArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNArrayController.m; sourceTree = "<group>"; };
+		AE6DD711289D0B3700EF3B4A /* MLNLoadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNLoadOperation.m; sourceTree = "<group>"; };
+		AE6DD712289D0B3700EF3B4A /* MLNExportPanelControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNExportPanelControllerDelegate.h; sourceTree = "<group>"; };
+		AE6DD713289D0B3700EF3B4A /* MLNExportOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNExportOperation.m; sourceTree = "<group>"; };
+		AE6DD714289D0B3800EF3B4A /* MLNLoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNLoadOperation.h; sourceTree = "<group>"; };
+		AE6DD715289D0B3800EF3B4A /* MLNMMapRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNMMapRegion.m; sourceTree = "<group>"; };
+		AE6DD716289D0B3800EF3B4A /* MLNLoadOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNLoadOperationDelegate.h; sourceTree = "<group>"; };
+		AE6DD717289D0B3800EF3B4A /* MLNMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNMarker.h; sourceTree = "<group>"; };
+		AE6DD718289D0B3800EF3B4A /* MLNMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNMarker.m; sourceTree = "<group>"; };
+		AE6DD719289D0B3800EF3B4A /* MLNOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNOperation.m; sourceTree = "<group>"; };
+		AE6DD71A289D0B3800EF3B4A /* MLNOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNOperation.h; sourceTree = "<group>"; };
+		AE6DD71B289D0B3800EF3B4A /* MLNOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNOperationDelegate.h; sourceTree = "<group>"; };
+		AE6DD71D289D0B3800EF3B4A /* MLNCacheFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNCacheFile.m; sourceTree = "<group>"; };
+		AE6DD71E289D0B3800EF3B4A /* MLNCacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNCacheFile.h; sourceTree = "<group>"; };
+		AE6DD722289D0B3900EF3B4A /* MLNArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNArrayController.h; sourceTree = "<group>"; };
+		AE6DD723289D0B3900EF3B4A /* MLNMMapRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNMMapRegion.h; sourceTree = "<group>"; };
+		AE6DD724289D0B3900EF3B4A /* MLNExportOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNExportOperation.h; sourceTree = "<group>"; };
+		AE6DD730289D0B7900EF3B4A /* utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
+		AE6DD731289D0B7900EF3B4A /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		AE6DD733289D0D7F00EF3B4A /* MLNSampleBlockSilence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNSampleBlockSilence.h; sourceTree = "<group>"; };
+		AE6DD734289D0D7F00EF3B4A /* MLNSampleBlockSilence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNSampleBlockSilence.m; sourceTree = "<group>"; };
+		AE6DD739289D106C00EF3B4A /* MLNExportableType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNExportableType.h; sourceTree = "<group>"; };
+		AE6DD73A289D106C00EF3B4A /* MLNExportableType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNExportableType.m; sourceTree = "<group>"; };
+		AE6DD73C289D22B900EF3B4A /* MLNCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLNCacheManager.h; sourceTree = "<group>"; };
+		AE6DD73D289D22B900EF3B4A /* MLNCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLNCacheManager.m; sourceTree = "<group>"; };
+		AE764DC42885F9FF0060E6CC /* EditorModePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorModePicker.swift; sourceTree = "<group>"; };
+		AE839FCD28988331005F579C /* PreviewPersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPersistenceController.swift; sourceTree = "<group>"; };
+		AE90B32C28971BBE00EE6F72 /* RecordingMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetadata.swift; sourceTree = "<group>"; };
+		AE90B32E28971E2500EE6F72 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		AE90B3302897224100EE6F72 /* TestablePersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestablePersistenceController.swift; sourceTree = "<group>"; };
+		AE90B3322897334800EE6F72 /* RecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingService.swift; sourceTree = "<group>"; };
+		AE90B334289737DD00EE6F72 /* RecordingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingServiceTests.swift; sourceTree = "<group>"; };
+		AEA9C99928A54DFF00A17F8A /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
+		AEABCFF728A99BFE00711193 /* CaretView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaretView.swift; sourceTree = "<group>"; };
+		AEABCFF928AB9C4500711193 /* Caret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caret.swift; sourceTree = "<group>"; };
+		AEABD03428B76E3800711193 /* OverviewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewBar.swift; sourceTree = "<group>"; };
+		AEABD03628BC0BE600711193 /* SampleDrawingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDrawingHelper.swift; sourceTree = "<group>"; };
+		AEABD03828BD52A800711193 /* FieldworkSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldworkSample.swift; sourceTree = "<group>"; };
+		AEABD03A28BD597F00711193 /* FieldworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldworkOperation.swift; sourceTree = "<group>"; };
+		AEABD03C28BD5F8700711193 /* FieldworkLoadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldworkLoadOperation.swift; sourceTree = "<group>"; };
+		AEABD03E28BEAC0600711193 /* CoreaudioSampleLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreaudioSampleLoader.h; sourceTree = "<group>"; };
+		AEABD03F28BEAC0600711193 /* CoreaudioSampleLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreaudioSampleLoader.m; sourceTree = "<group>"; };
+		AEABD04128BEAC4B00711193 /* ISampleLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISampleLoader.h; sourceTree = "<group>"; };
+		AEABD04528C3303600711193 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		AEACA2B628C930AC00E19AE4 /* AVFoundationSampleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFoundationSampleLoader.swift; sourceTree = "<group>"; };
+		AEACA2B828C938BE00E19AE4 /* ISampleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISampleLoader.swift; sourceTree = "<group>"; };
+		AEACA2BA28C93A9D00E19AE4 /* SampleMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleMetadata.swift; sourceTree = "<group>"; };
+		AEDE43C42887EC5800A16F66 /* FieldWorkModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldWorkModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +222,16 @@
 		AE0335D02883403C00C22F7D /* FieldWork */ = {
 			isa = PBXGroup;
 			children = (
+				AEABD04228C1FCD100711193 /* Fieldwork */,
+				AEA9C99828A54DEB00A17F8A /* Services */,
+				AE1B8968289F0B7500FB8BF8 /* Extensions */,
+				AE6DD6F3289D08E900EF3B4A /* Marlin */,
+				AE6DD6EE289AF98000EF3B4A /* Commands */,
 				AE0335D12883403C00C22F7D /* FieldWorkApp.swift */,
-				AE0335D32883403C00C22F7D /* ContentView.swift */,
+				AE764DC72886055C0060E6CC /* Editors */,
+				AE764DC9288605BF0060E6CC /* Model */,
+				AE764DC62886053E0060E6CC /* Navigation */,
+				AE764DC8288605840060E6CC /* Views */,
 				AE0335D52883403F00C22F7D /* Assets.xcassets */,
 				AE0335DA2883403F00C22F7D /* FieldWork.entitlements */,
 				AE0335D72883403F00C22F7D /* Preview Content */,
@@ -116,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				AE0335E32883404000C22F7D /* FieldWorkTests.swift */,
+				AE90B334289737DD00EE6F72 /* RecordingServiceTests.swift */,
 			);
 			path = FieldWorkTests;
 			sourceTree = "<group>";
@@ -127,6 +263,162 @@
 				AE0335EF2883404000C22F7D /* FieldWorkUITestsLaunchTests.swift */,
 			);
 			path = FieldWorkUITests;
+			sourceTree = "<group>";
+		};
+		AE0AAC1728C3F09B00B4345D /* Def */ = {
+			isa = PBXGroup;
+			children = (
+				AE0AAC1828C3F0BA00B4345D /* ISample.swift */,
+				AEACA2B828C938BE00E19AE4 /* ISampleLoader.swift */,
+				AEACA2BA28C93A9D00E19AE4 /* SampleMetadata.swift */,
+			);
+			path = Def;
+			sourceTree = "<group>";
+		};
+		AE1B8968289F0B7500FB8BF8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AE1B8969289F0B8E00FB8BF8 /* BindingExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AE6DD6EE289AF98000EF3B4A /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				AE6DD6EF289AF9A700EF3B4A /* FileCommands.swift */,
+				AE6DD6F1289AF9DE00EF3B4A /* ImportCommand.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		AE6DD6F3289D08E900EF3B4A /* Marlin */ = {
+			isa = PBXGroup;
+			children = (
+				AE6DD739289D106C00EF3B4A /* MLNExportableType.h */,
+				AE6DD73A289D106C00EF3B4A /* MLNExportableType.m */,
+				AE6DD733289D0D7F00EF3B4A /* MLNSampleBlockSilence.h */,
+				AE6DD734289D0D7F00EF3B4A /* MLNSampleBlockSilence.m */,
+				AE6DD731289D0B7900EF3B4A /* utils.h */,
+				AE6DD730289D0B7900EF3B4A /* utils.m */,
+				AE6DD722289D0B3900EF3B4A /* MLNArrayController.h */,
+				AE6DD710289D0B3700EF3B4A /* MLNArrayController.m */,
+				AE6DD71E289D0B3800EF3B4A /* MLNCacheFile.h */,
+				AE6DD71D289D0B3800EF3B4A /* MLNCacheFile.m */,
+				AE6DD724289D0B3900EF3B4A /* MLNExportOperation.h */,
+				AE6DD713289D0B3700EF3B4A /* MLNExportOperation.m */,
+				AE6DD712289D0B3700EF3B4A /* MLNExportPanelControllerDelegate.h */,
+				AE6DD714289D0B3800EF3B4A /* MLNLoadOperation.h */,
+				AE6DD711289D0B3700EF3B4A /* MLNLoadOperation.m */,
+				AE6DD716289D0B3800EF3B4A /* MLNLoadOperationDelegate.h */,
+				AE6DD717289D0B3800EF3B4A /* MLNMarker.h */,
+				AE6DD718289D0B3800EF3B4A /* MLNMarker.m */,
+				AE6DD723289D0B3900EF3B4A /* MLNMMapRegion.h */,
+				AE6DD715289D0B3800EF3B4A /* MLNMMapRegion.m */,
+				AE6DD71A289D0B3800EF3B4A /* MLNOperation.h */,
+				AE6DD719289D0B3800EF3B4A /* MLNOperation.m */,
+				AE6DD71B289D0B3800EF3B4A /* MLNOperationDelegate.h */,
+				AE6DD70D289D0A4400EF3B4A /* Constants.h */,
+				AE6DD70C289D0A4400EF3B4A /* Constants.m */,
+				AE6DD6FC289D094800EF3B4A /* MLNSample.h */,
+				AE6DD702289D094900EF3B4A /* MLNSample.m */,
+				AE6DD6FA289D094800EF3B4A /* MLNSampleBlock.h */,
+				AE6DD701289D094800EF3B4A /* MLNSampleBlock.m */,
+				AE6DD6FF289D094800EF3B4A /* MLNSampleBlockFile.h */,
+				AE6DD704289D094900EF3B4A /* MLNSampleBlockFile.m */,
+				AE6DD6FD289D094800EF3B4A /* MLNSampleBlockList.h */,
+				AE6DD6F7289D094800EF3B4A /* MLNSampleBlockList.m */,
+				AE6DD6F9289D094800EF3B4A /* MLNSampleChannel.h */,
+				AE6DD6F5289D094700EF3B4A /* MLNSampleChannel.m */,
+				AE6DD6F8289D094800EF3B4A /* MLNSampleChannelIterator.h */,
+				AE6DD703289D094900EF3B4A /* MLNSampleChannelIterator.m */,
+				AE6DD700289D094800EF3B4A /* MLNSampleDelegate.h */,
+				AE6DD6FE289D094800EF3B4A /* pa_memorybarrier.h */,
+				AE6DD6FB289D094800EF3B4A /* pa_ringbuffer.c */,
+				AE6DD6F6289D094700EF3B4A /* pa_ringbuffer.h */,
+				AE6DD6F4289D094700EF3B4A /* FieldWork-Bridging-Header.h */,
+				AE6DD73C289D22B900EF3B4A /* MLNCacheManager.h */,
+				AE6DD73D289D22B900EF3B4A /* MLNCacheManager.m */,
+				AEABD03E28BEAC0600711193 /* CoreaudioSampleLoader.h */,
+				AEABD03F28BEAC0600711193 /* CoreaudioSampleLoader.m */,
+				AEABD04128BEAC4B00711193 /* ISampleLoader.h */,
+			);
+			path = Marlin;
+			sourceTree = "<group>";
+		};
+		AE764DC62886053E0060E6CC /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				AE0335D32883403C00C22F7D /* ContentView.swift */,
+				AE0335FC288444FA00C22F7D /* SidebarView.swift */,
+				AE0336022884973100C22F7D /* EditorView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		AE764DC72886055C0060E6CC /* Editors */ = {
+			isa = PBXGroup;
+			children = (
+				AE0335FE2884457100C22F7D /* InfoView.swift */,
+				AE0336002884459C00C22F7D /* SampleEditor.swift */,
+			);
+			path = Editors;
+			sourceTree = "<group>";
+		};
+		AE764DC8288605840060E6CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AE764DC42885F9FF0060E6CC /* EditorModePicker.swift */,
+				AEABCFF628A99BC000711193 /* NSViews */,
+				AEABCFF928AB9C4500711193 /* Caret.swift */,
+				AEABD04528C3303600711193 /* ProgressView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AE764DC9288605BF0060E6CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AEDE43C32887EC5800A16F66 /* FieldWorkModel.xcdatamodeld */,
+				AE90B32C28971BBE00EE6F72 /* RecordingMetadata.swift */,
+				AE90B32E28971E2500EE6F72 /* PersistenceController.swift */,
+				AE90B3302897224100EE6F72 /* TestablePersistenceController.swift */,
+				AE839FCD28988331005F579C /* PreviewPersistenceController.swift */,
+				AE1B896B289FB8DE00FB8BF8 /* RecordingModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AEA9C99828A54DEB00A17F8A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AE90B3322897334800EE6F72 /* RecordingService.swift */,
+				AEA9C99928A54DFF00A17F8A /* FileService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AEABCFF628A99BC000711193 /* NSViews */ = {
+			isa = PBXGroup;
+			children = (
+				AE1B8966289EFBB800FB8BF8 /* SampleView.swift */,
+				AEABCFF728A99BFE00711193 /* CaretView.swift */,
+				AEABD03428B76E3800711193 /* OverviewBar.swift */,
+				AEABD03628BC0BE600711193 /* SampleDrawingHelper.swift */,
+			);
+			path = NSViews;
+			sourceTree = "<group>";
+		};
+		AEABD04228C1FCD100711193 /* Fieldwork */ = {
+			isa = PBXGroup;
+			children = (
+				AE0AAC1728C3F09B00B4345D /* Def */,
+				AEABD03828BD52A800711193 /* FieldworkSample.swift */,
+				AEABD03A28BD597F00711193 /* FieldworkOperation.swift */,
+				AEABD03C28BD5F8700711193 /* FieldworkLoadOperation.swift */,
+				AEACA2B628C930AC00E19AE4 /* AVFoundationSampleLoader.swift */,
+			);
+			path = Fieldwork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +489,7 @@
 				TargetAttributes = {
 					AE0335CD2883403C00C22F7D = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1400;
 					};
 					AE0335DE2883404000C22F7D = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -259,8 +552,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE90B3312897224100EE6F72 /* TestablePersistenceController.swift in Sources */,
+				AEA9C99A28A54DFF00A17F8A /* FileService.swift in Sources */,
+				AEACA2BB28C93A9D00E19AE4 /* SampleMetadata.swift in Sources */,
+				AE1B896A289F0B8E00FB8BF8 /* BindingExtensions.swift in Sources */,
+				AEABD03B28BD597F00711193 /* FieldworkOperation.swift in Sources */,
+				AE6DD6F0289AF9A700EF3B4A /* FileCommands.swift in Sources */,
+				AE0336012884459C00C22F7D /* SampleEditor.swift in Sources */,
+				AEABCFFA28AB9C4500711193 /* Caret.swift in Sources */,
+				AE6DD72B289D0B3900EF3B4A /* MLNMarker.m in Sources */,
+				AE0335FF2884457100C22F7D /* InfoView.swift in Sources */,
+				AE6DD707289D094900EF3B4A /* pa_ringbuffer.c in Sources */,
+				AE6DD70E289D0A4400EF3B4A /* Constants.m in Sources */,
+				AE6DD73B289D106C00EF3B4A /* MLNExportableType.m in Sources */,
+				AE90B32D28971BBE00EE6F72 /* RecordingMetadata.swift in Sources */,
+				AE6DD708289D094900EF3B4A /* MLNSampleBlock.m in Sources */,
+				AE6DD709289D094900EF3B4A /* MLNSample.m in Sources */,
+				AEABD03928BD52A800711193 /* FieldworkSample.swift in Sources */,
+				AE1B896C289FB8DE00FB8BF8 /* RecordingModel.swift in Sources */,
+				AE6DD72E289D0B3900EF3B4A /* MLNCacheFile.m in Sources */,
+				AEABD04028BEAC0600711193 /* CoreaudioSampleLoader.m in Sources */,
+				AEABD04628C3303600711193 /* ProgressView.swift in Sources */,
+				AE6DD729289D0B3900EF3B4A /* MLNExportOperation.m in Sources */,
+				AE6DD727289D0B3900EF3B4A /* MLNArrayController.m in Sources */,
+				AEABD03D28BD5F8700711193 /* FieldworkLoadOperation.swift in Sources */,
+				AEDE43C52887EC5800A16F66 /* FieldWorkModel.xcdatamodeld in Sources */,
+				AE90B3332897334800EE6F72 /* RecordingService.swift in Sources */,
+				AEABCFF828A99BFE00711193 /* CaretView.swift in Sources */,
+				AE764DC52885F9FF0060E6CC /* EditorModePicker.swift in Sources */,
+				AE839FCE28988331005F579C /* PreviewPersistenceController.swift in Sources */,
 				AE0335D42883403C00C22F7D /* ContentView.swift in Sources */,
+				AE6DD706289D094900EF3B4A /* MLNSampleBlockList.m in Sources */,
+				AE6DD72A289D0B3900EF3B4A /* MLNMMapRegion.m in Sources */,
+				AE90B32F28971E2500EE6F72 /* PersistenceController.swift in Sources */,
+				AEACA2B928C938BE00E19AE4 /* ISampleLoader.swift in Sources */,
+				AE6DD735289D0D7F00EF3B4A /* MLNSampleBlockSilence.m in Sources */,
+				AE6DD6F2289AF9DE00EF3B4A /* ImportCommand.swift in Sources */,
+				AE6DD732289D0B7900EF3B4A /* utils.m in Sources */,
+				AE0AAC1928C3F0BA00B4345D /* ISample.swift in Sources */,
+				AE0336032884973100C22F7D /* EditorView.swift in Sources */,
+				AE6DD73E289D22B900EF3B4A /* MLNCacheManager.m in Sources */,
+				AEABD03728BC0BE600711193 /* SampleDrawingHelper.swift in Sources */,
+				AEABD03528B76E3800711193 /* OverviewBar.swift in Sources */,
+				AE6DD70B289D094900EF3B4A /* MLNSampleBlockFile.m in Sources */,
+				AE6DD72C289D0B3900EF3B4A /* MLNOperation.m in Sources */,
 				AE0335D22883403C00C22F7D /* FieldWorkApp.swift in Sources */,
+				AE1B8967289EFBB800FB8BF8 /* SampleView.swift in Sources */,
+				AE0335FD288444FA00C22F7D /* SidebarView.swift in Sources */,
+				AE6DD705289D094900EF3B4A /* MLNSampleChannel.m in Sources */,
+				AE6DD728289D0B3900EF3B4A /* MLNLoadOperation.m in Sources */,
+				AE6DD70A289D094900EF3B4A /* MLNSampleChannelIterator.m in Sources */,
+				AEACA2B728C930AC00E19AE4 /* AVFoundationSampleLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE0335E42883404000C22F7D /* FieldWorkTests.swift in Sources */,
+				AE90B335289737DD00EE6F72 /* RecordingServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,15 +758,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FieldWork/FieldWork.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FieldWork/Preview Content\"";
-				DEVELOPMENT_TEAM = X7666LWADW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = $PROJECT_DIR/Marlin;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -432,7 +778,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.falsevictories.FieldWork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "FieldWork/Marlin/FieldWork-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -442,15 +791,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FieldWork/FieldWork.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FieldWork/Preview Content\"";
-				DEVELOPMENT_TEAM = X7666LWADW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = $PROJECT_DIR/Marlin;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -459,7 +811,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.falsevictories.FieldWork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "FieldWork/Marlin/FieldWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -471,7 +825,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7666LWADW;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
@@ -490,7 +844,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7666LWADW;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
@@ -508,7 +862,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7666LWADW;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.falsevictories.FieldWorkUITests;
@@ -525,7 +879,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7666LWADW;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.falsevictories.FieldWorkUITests;
@@ -576,6 +930,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AEDE43C32887EC5800A16F66 /* FieldWorkModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AEDE43C42887EC5800A16F66 /* FieldWorkModel.xcdatamodel */,
+			);
+			currentVersion = AEDE43C42887EC5800A16F66 /* FieldWorkModel.xcdatamodel */;
+			path = FieldWorkModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AE0335C62883403C00C22F7D /* Project object */;
 }
