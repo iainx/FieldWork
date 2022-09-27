@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppKit
 
 protocol IFileService {
     func getAccessTo(url: URL) -> Bool
@@ -65,6 +66,7 @@ class FileService : ObservableObject, IFileService {
     }
     
     func importFile(url: URL) {
+        /*
         _ = recordingService.getSecurityBookmarkFor(url: url)
         
         MLNLoadOperation.createLoadOperationFromURL(onMainQueue: url, metadataOnly: true) { [self] (totalframes, asbd, error) in
@@ -77,6 +79,7 @@ class FileService : ObservableObject, IFileService {
             
             recordingService.addRecording(metaData: metadata)
         }
+         */
     }
 
     func getAccessTo(url: URL) -> Bool {

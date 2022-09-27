@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class Model : NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     @Published var recordings: [Recording] = []

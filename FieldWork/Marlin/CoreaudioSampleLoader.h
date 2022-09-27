@@ -6,7 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ISampleLoader.h"
+
+@protocol ISampleLoader;
+@protocol ISampleLoaderFactory;
 
 NS_ASSUME_NONNULL_BEGIN
 

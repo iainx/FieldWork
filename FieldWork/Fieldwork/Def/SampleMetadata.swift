@@ -7,9 +7,20 @@
 
 import Foundation
 
-struct SampleMetadata {
-    var sampleRate: Double
-    var numberOfFrames: UInt64
-    var numberOfChannels: UInt
-    var bitrate: Double
+@objc class SampleMetadata: NSObject {
+    @objc var sampleRate: Double
+    @objc var numberOfFrames: UInt64
+    @objc var numberOfChannels: UInt
+    @objc var bitrate: Double
+    
+    @objc init(sampleRate: Double,
+         numberOfFrames: UInt64,
+         numberOfChannels: UInt,
+         bitrate: Double)
+    {
+        self.sampleRate = sampleRate
+        self.numberOfFrames = numberOfFrames
+        self.numberOfChannels = numberOfChannels
+        self.bitrate = bitrate
+    }
 }

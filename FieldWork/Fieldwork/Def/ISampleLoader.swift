@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol ISampleLoader {
+@objc protocol ISampleLoader {
     init(sample: ISample)
     func open(url: URL) throws
-    func loadMetadata(metadata: inout SampleMetadata) async throws
-    func loadData(progressHandler: (Double, NSError) -> Void) async
+    func loadMetadata() throws -> SampleMetadata
+    func loadData(progressHandler: (Double, NSError?) -> Void)
 }
 
-protocol ISampleLoaderFactory {
+@objc protocol ISampleLoaderFactory {
     func createSampleLoader(for sample: ISample) -> ISampleLoader
 }

@@ -13,18 +13,17 @@ class FieldworkLoadOperation: FieldworkOperation {
     init(factory: ISampleLoaderFactory, url: URL, sample: ISample) {
         sampleLoader = factory.createSampleLoader(for:sample)
         do {
-            try sampleLoader.open(url)
+            try sampleLoader.open(url:url)
         } catch {
             print("Error opening sample loader \(error)")
         }
     }
     
     override func main() {
-        var asbd: AudioStreamBasicDescription = AudioStreamBasicDescription()
-        var totalFrames: Int = 0
+        let metadata: SampleMetadata
         
         do {
-            try sampleLoader.loadMetadata(&asbd, totalFrames: &totalFrames)
+            metadata = try sampleLoader.loadMetadata()
         } catch {
             print("Error loading metadata \(error)")
         }

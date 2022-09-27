@@ -44,12 +44,12 @@ class FieldworkSample : NSObject, ISample {
     }
     
     func didLoad(data channelData: [MLNSampleChannel],
-                 description format: AudioStreamBasicDescription) {
+                 description format: SampleMetadata) {
         self.channelData = channelData
         self.numberOfFrames = UInt64 (channelData[0].numberOfFrames)
-        self.numberOfChannels = UInt(format.mChannelsPerFrame)
-        self.bitrate = UInt(format.mBitsPerChannel)
-        self.sampleRate = UInt(format.mSampleRate)
+        self.numberOfChannels = UInt(format.numberOfChannels)
+        self.bitrate = UInt(format.bitrate)
+        self.sampleRate = UInt(format.sampleRate)
         
         NotificationCenter.default.post(name: .sampleDidLoadNotification, object: self)
         self.loaded = true

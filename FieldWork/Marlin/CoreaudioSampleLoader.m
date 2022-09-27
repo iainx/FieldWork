@@ -32,6 +32,7 @@
     uint64 _totalFrameCount;
     NSMutableArray *_channelArray;
     id<ISample> _sample;
+    SampleMetadata *_metadata;
 }
 
 - (instancetype)initWithSample:(id<ISample>)sample
@@ -45,8 +46,8 @@
     return self;
 }
 
-- (BOOL)open:(NSURL *)url
-       error:(NSError **)error
+- (BOOL)openWithUrl:(NSURL *)url
+              error:(NSError **)error
 {
     OSStatus status;
     CFURLRef urlRef = (__bridge CFURLRef)url;
@@ -64,9 +65,7 @@
     return YES;
 }
 
-- (BOOL)loadMetadata:(AudioStreamBasicDescription *_Nonnull)format
-         totalFrames:(NSInteger *_Nonnull)totalFrames
-               error:(NSError *_Nonnull*_Nullable)error
+- (SampleMetadata *)loadMetadataAndReturnError:(NSError * _Nullable __autoreleasing *)error
 {
     AudioStreamBasicDescription inFormat, outputFormat;
     OSStatus status;
@@ -75,7 +74,7 @@
     status = ExtAudioFileGetProperty(_fileRef, kExtAudioFileProperty_FileDataFormat, &propSize, &inFormat);
     if (check_status_is_error(status, "ExtAudioFileGetProperty")) {
         *error = make_error(status, "ExtAudioFileGetProperty", __PRETTY_FUNCTION__, __LINE__);
-        return NO;
+        return nil;
     }
     
     // Setup the output asbd
@@ -93,7 +92,7 @@
                                      sizeof(AudioStreamBasicDescription), &outputFormat);
     if (check_status_is_error(status, "ExtAudioFileSetProperty")) {
         *error = make_error (status, "ExtAudioFileSetProperty", __PRETTY_FUNCTION__, __LINE__);
-        return NO;
+        return nil;
     }
     
     propSize = sizeof(SInt64);
@@ -102,22 +101,21 @@
     status = ExtAudioFileGetProperty(_fileRef, kExtAudioFileProperty_FileLengthFrames, &propSize, &totalFrameCount);
     if (check_status_is_error(status, "ExtAudioFileGetProperty")) {
         *error = make_error(status, "ExtAudioFileGetProperty", __PRETTY_FUNCTION__, __LINE__);
-        return NO;
+        return nil;
     }
     
-    *totalFrames = totalFrameCount;
-    *format = outputFormat;
     _outputFormat = outputFormat;
     _totalFrameCount = totalFrameCount;
     
     *error = nil;
     
-    return YES;
+    _metadata = [[SampleMetadata alloc] initWithSampleRate:outputFormat.mSampleRate numberOfFrames:totalFrameCount numberOfChannels:outputFormat.mChannelsPerFrame bitrate:outputFormat.mBitsPerChannel];
+    return _metadata;
 }
 
 #define BUFFER_SIZE (1024 * 1024) // 1MB of data for each block initially. About 6 seconds of audio at 44.1khz
 
-- (void)loadData:(nullable void (^)(double, NSError *))progressHandler
+- (void)loadDataWithProgressHandler:(void (^)(double, NSError * _Nullable))progressHandler
 {
     AudioBufferList *bufferList = NULL;
     
@@ -180,7 +178,7 @@
         [channel dumpChannel:NO];
     }
     
-    [_sample didLoadWithData:_channelArray description:_outputFormat];
+    [_sample didLoadWithData:_channelArray description:_metadata];
     
     fprintf(stdout, "Loaded %lld frames\n", framesSoFar);
     // Sanity check
@@ -199,6 +197,10 @@ cleanup:
 }
 
 #pragma mark - Utility functions
+
+enum {
+    MLNSampleLoadError,
+};
 
 static NSError *
 make_error (OSStatus    status,
