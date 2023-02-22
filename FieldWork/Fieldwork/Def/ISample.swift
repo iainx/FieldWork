@@ -13,6 +13,7 @@ import Foundation
 
     var numberOfChannels: UInt { get }
     var numberOfFrames: UInt64 { get }
+    
     var sampleRate: UInt { get }
     var bitrate: UInt { get }
 

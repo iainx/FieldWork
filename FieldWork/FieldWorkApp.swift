@@ -15,14 +15,14 @@ struct FieldWorkApp: App {
     let recordingService: RecordingService
     let fileService: FileService
     
-    let model: Model
+    let model: FieldWorkViewModel
     
     init() {
         recordingService = RecordingService(managedObjectContext: persistenceController.mainContext,
                                             persistenceController: persistenceController)
         recordingService.sampleFactory = DefaultSampleFactory()
         
-        model = Model(recordingService: recordingService)
+        model = FieldWorkViewModel(recordingService: recordingService)
         fileService = FileService(recordingService: recordingService)
     }
     
@@ -36,6 +36,7 @@ struct FieldWorkApp: App {
         .commands {
             SidebarCommands()
             FileCommands(recordingService: recordingService)
+            ViewCommands(model: model)
         }
         .onChange(of: scenePhase) { _ in
             persistenceController.saveContext()

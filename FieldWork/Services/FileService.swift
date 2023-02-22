@@ -66,20 +66,24 @@ class FileService : ObservableObject, IFileService {
     }
     
     func importFile(url: URL) {
-        /*
         _ = recordingService.getSecurityBookmarkFor(url: url)
+        let metadataLoaderFactory : ISampleLoaderFactory = CoreaudioSampleLoaderFactory()
+        let metadataLoader = metadataLoaderFactory.createMetadataLoader()
         
-        MLNLoadOperation.createLoadOperationFromURL(onMainQueue: url, metadataOnly: true) { [self] (totalframes, asbd, error) in
-            print("Total frames: \(totalframes)")
-            print("Number of channels: \(asbd.mChannelsPerFrame)")
-            print("Sample rate: \(asbd.mSampleRate)")
-            print("Bitdepth: \(asbd.mBitsPerChannel)")
+        do {
+            try metadataLoader.open(url: url)
+            let metadata = try metadataLoader.loadMetadata()
+            let rm = RecordingMetadata(name: url.lastPathComponent,
+                                       filepath: url, createdDate: Date.now,
+                                       frameCount: metadata.numberOfFrames,
+                                       channelCount: UInt8(metadata.numberOfChannels),
+                                       bitdepth: UInt8(metadata.bitrate),
+                                       samplerate: UInt32(metadata.sampleRate))
             
-            let metadata = RecordingMetadata(name: url.lastPathComponent, filepath: url, createdDate: Date.now, frameCount: totalframes, channelCount: UInt8(asbd.mChannelsPerFrame), bitdepth: UInt8(asbd.mBitsPerChannel), samplerate: UInt32(asbd.mSampleRate))
-            
-            recordingService.addRecording(metaData: metadata)
+            recordingService.addRecording(metaData: rm)
+        } catch {
+            print("Error getting metadata for \(url): \(error)")
         }
-         */
     }
 
     func getAccessTo(url: URL) -> Bool {

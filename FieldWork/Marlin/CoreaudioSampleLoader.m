@@ -7,6 +7,8 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 
+#import <FieldWork-Swift.h>
+
 #import "CoreaudioSampleLoader.h"
 
 #import "MLNSampleChannel.h"
@@ -18,11 +20,15 @@
 
 @implementation CoreaudioSampleLoaderFactory
 
--(id<ISampleLoader>)createSampleLoaderFor:(id<ISample>)sample
+- (id<ISampleLoader>)createSampleLoaderFor:(id<ISample>)sample
 {
     return [[CoreaudioSampleLoader alloc] initWithSample:sample];
 }
 
+- (id<ISampleLoader>)createMetadataLoader
+{
+    return [[CoreaudioSampleLoader alloc] init];
+}
 @end
 
 @implementation CoreaudioSampleLoader {
@@ -35,9 +41,19 @@
     SampleMetadata *_metadata;
 }
 
-- (instancetype)initWithSample:(id<ISample>)sample
+- (instancetype)init
 {
     self = [super init];
+    if (self == nil) {
+        return nil;
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithSample:(id<ISample>)sample
+{
+    self = [self init];
     if (self == nil) {
         return nil;
     }

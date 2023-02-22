@@ -11,7 +11,7 @@ struct ContentView: View {
     @SceneStorage("selection") private var selectedRecordingID: String?
     @EnvironmentObject var recordingService: RecordingService
     
-    @StateObject var model: Model
+    @StateObject var model: FieldWorkViewModel
     
     var body: some View {
         NavigationView {
@@ -24,7 +24,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static let persistenceController = PreviewPersistenceController()
     static let recordingService: RecordingService = RecordingService(managedObjectContext: persistenceController.mainContext, persistenceController: persistenceController)
-    static let model: Model = Model(recordingService: recordingService)
+    static let model: FieldWorkViewModel = FieldWorkViewModel(recordingService: recordingService)
     
     static var previews: some View {
         ContentView(model: model)

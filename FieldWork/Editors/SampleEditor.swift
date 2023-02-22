@@ -12,9 +12,9 @@ struct SampleEditor: View {
     @EnvironmentObject var fileService: FileService
     
     @StateObject var viewModel = SampleEditorViewModel()
-    @State private var framesPerPixel: Double = 256
     
     var recording: Recording?
+    @Binding var framesPerPixel: UInt64
     
     var body: some View {
         VStack {
@@ -31,7 +31,7 @@ struct SampleEditor: View {
                         VStack {
                             OverviewBarRepresentable(sample: viewModel.sample)
                             ScrollView(.horizontal) {
-                                SampleViewControllerRepresentable(framesPerPixel: $framesPerPixel,
+                                SampleViewControllerRepresentable(framesPerPixel: $viewModel.framesPerPixel,
                                                                   sample: viewModel.sample)
                             }
                         }
@@ -50,6 +50,9 @@ struct SampleEditor: View {
         .onChange(of: recording) { newRecording in
             viewModel.setRecording(newRecording)
         }
+        .onChange(of: framesPerPixel) { newFpp in
+            viewModel.framesPerPixel = newFpp
+        }
     }
 }
 
@@ -58,6 +61,7 @@ class SampleEditorViewModel: ObservableObject {
     @Published var progress: Double = 0.0
     @Published var filename: String = ""
     @Published var operation: FieldworkOperation?
+    @Published var framesPerPixel: UInt64 = 256
     
     var fileService: FileService!
     var recordingService: RecordingService!

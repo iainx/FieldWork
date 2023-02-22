@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InfoView: View {
-    @ObservedObject var model: Model
+    @ObservedObject var model: FieldWorkViewModel
     
     var body: some View {
         if (model.selectedRecording == nil) {
@@ -34,7 +34,7 @@ struct InfoView: View {
 struct InfoView_Previews: PreviewProvider {
     static let persistenceController = PreviewPersistenceController()
     static let recordingService: RecordingService = RecordingService(managedObjectContext: persistenceController.mainContext, persistenceController: persistenceController)
-    static let model: Model = Model(recordingService: recordingService)
+    static let model: FieldWorkViewModel = FieldWorkViewModel(recordingService: recordingService)
     
     static var previews: some View {
         InfoView(model: model)

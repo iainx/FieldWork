@@ -11,7 +11,7 @@ import SwiftUI
 struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
     typealias NSViewControllerType = SampleViewController
     
-    @Binding var framesPerPixel: Double
+    @Binding var framesPerPixel: UInt64
 
     var sample: ISample?
     
@@ -24,6 +24,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
     
     func updateNSViewController(_ nsViewController: Self.NSViewControllerType, context: Self.Context) {
         nsViewController.representedObject = sample
+        print("Setting fpp in controller to \(UInt(framesPerPixel))")
         nsViewController.framesPerPixel = UInt(framesPerPixel)
     }
     
@@ -35,7 +36,8 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
         }
         
         func framesPerPixelChanged(framesPerPixel: UInt) {
-            parent.framesPerPixel = Double(framesPerPixel)
+            print("Coordinator fpp changed")
+            parent.framesPerPixel = UInt64(framesPerPixel)
         }
     }
     
@@ -59,6 +61,7 @@ class SampleViewController: NSViewController, SampleViewDelegate {
     
     var framesPerPixel: UInt = 256 {
         didSet {
+            print("Set FPP in controller")
             sampleView.setFramesPerPixel(newFramesPerPixel: framesPerPixel)
         }
     }
@@ -97,6 +100,7 @@ class SampleViewController: NSViewController, SampleViewDelegate {
     }
     
     func framesPerPixelChanged(framesPerPixel: UInt) {
+        print ("fpp changed in controller")
         guard let delegate = delegate else {
             return
         }
@@ -138,6 +142,7 @@ class SampleView: NSView {
     
     var framesPerPixel: UInt = 256
     func setFramesPerPixel(newFramesPerPixel: UInt) {
+        print("fpp set in view")
         if (framesPerPixel != newFramesPerPixel) {
             framesPerPixel = newFramesPerPixel
             invalidateIntrinsicContentSize()
@@ -221,6 +226,7 @@ class SampleView: NSView {
         var dfpp: CGFloat
         let unwrappedFPP = UInt(framesPerPixel)
         
+        print (magnification)
         if (unwrappedFPP > 256) {
             dfpp = CGFloat(summedMagnificationLevel) * magnification
         } else {

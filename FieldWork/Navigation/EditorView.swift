@@ -18,7 +18,7 @@ struct EditorView: View {
 
 
     @EnvironmentObject var recordingService: RecordingService
-    @ObservedObject var model: Model
+    @ObservedObject var model: FieldWorkViewModel
     
     var body: some View {
         Group {
@@ -26,8 +26,9 @@ struct EditorView: View {
             case .details:
                 InfoView(model: model)
             case .sample:
-                let _ = print("New sample editor")
-                SampleEditor(recording: model.selectedRecording)
+                let _ = print("New sample editor \(model.framesPerPixel)")
+    
+                SampleEditor(recording: model.selectedRecording, framesPerPixel: $model.framesPerPixel)
             }
         }
         .toolbar {
@@ -39,7 +40,7 @@ struct EditorView: View {
 struct EditorView_Previews: PreviewProvider {
     static let persistenceController = PreviewPersistenceController()
     static let recordingService: RecordingService = RecordingService(managedObjectContext: persistenceController.mainContext, persistenceController: persistenceController)
-    static let model: Model = Model(recordingService: recordingService)
+    static let model: FieldWorkViewModel = FieldWorkViewModel(recordingService: recordingService)
     
     static var previews: some View {
         Group {

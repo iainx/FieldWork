@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SidebarView: View {
     @EnvironmentObject var recordingService: RecordingService
-    @ObservedObject var model: Model
+    @ObservedObject var model: FieldWorkViewModel
     
     var body: some View {
         List (model.recordings, selection: $model.selectedRecording) { recording in
@@ -26,7 +26,7 @@ struct SidebarView_Previews: PreviewProvider {
     static let persistenceController = PreviewPersistenceController()
     static let recordingService = RecordingService(managedObjectContext: persistenceController.mainContext,
                                                    persistenceController: persistenceController)
-    static let model = Model(recordingService: recordingService)
+    static let model = FieldWorkViewModel(recordingService: recordingService)
     
     static var previews: some View {
         SidebarView(model: model)

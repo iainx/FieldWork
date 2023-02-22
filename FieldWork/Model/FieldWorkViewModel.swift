@@ -8,13 +8,16 @@
 import Foundation
 import CoreData
 
-class Model : NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
+class FieldWorkViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     @Published var recordings: [Recording] = []
     @Published var selectedRecording: Recording?
+    @Published var framesPerPixel: UInt64 = 256
+    @Published var caretPosition: UInt64 = 0
     
     var controller: NSFetchedResultsController<Recording>
     
     init(recordingService: RecordingService) {
+        print("New Model")
         let context = recordingService.managedObjectContext
         let fetchRequest = Recording.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date",
@@ -41,24 +44,20 @@ class Model : NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     
         recordings = controller.fetchedObjects ?? []
     }
+    
+    func zoomIn() {
+        if (framesPerPixel == 1) {
+            return
+        }
+        framesPerPixel /= 2
+    }
+    
+    func zoomOut() {
+        // Set max limit?
+        framesPerPixel *= 2
+    }
+    
+    func zoomReset() {
+        framesPerPixel = 256
+    }
 }
-
-/*
- class RecordingModel : ObservableObject, Identifiable, Hashable, Equatable {
- static func == (lhs: RecordingModel, rhs: RecordingModel) -> Bool {
- return lhs.recording.id == rhs.recording.id
- }
- 
- public func hash(into hasher: inout Hasher) {
- hasher.combine(self.recording.id)
- }
- 
- let recording: Recording
- let sample: MLNSample
- 
- init(recording: Recording) {
- self.recording = recording
- sample = MLNSample()
- }
- }
- */

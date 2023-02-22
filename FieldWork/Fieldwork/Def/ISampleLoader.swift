@@ -16,4 +16,5 @@ import Foundation
 
 @objc protocol ISampleLoaderFactory {
     func createSampleLoader(for sample: ISample) -> ISampleLoader
+    func createMetadataLoader() -> ISampleLoader
 }
