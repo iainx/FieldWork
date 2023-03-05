@@ -17,7 +17,6 @@ class FieldWorkViewModel : NSObject, ObservableObject, NSFetchedResultsControlle
     var controller: NSFetchedResultsController<Recording>
     
     init(recordingService: RecordingService) {
-        print("New Model")
         let context = recordingService.managedObjectContext
         let fetchRequest = Recording.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date",
@@ -59,5 +58,10 @@ class FieldWorkViewModel : NSObject, ObservableObject, NSFetchedResultsControlle
     
     func zoomReset() {
         framesPerPixel = 256
+        moveCaretToNextVisibleFrame()
+    }
+    
+    func moveCaretToNextVisibleFrame() {
+        caretPosition += framesPerPixel
     }
 }

@@ -15,6 +15,7 @@ struct SampleEditor: View {
     
     var recording: Recording?
     @Binding var framesPerPixel: UInt64
+    @Binding var caretPosition: UInt64
     
     var body: some View {
         VStack {
@@ -32,6 +33,7 @@ struct SampleEditor: View {
                             OverviewBarRepresentable(sample: viewModel.sample)
                             ScrollView(.horizontal) {
                                 SampleViewControllerRepresentable(framesPerPixel: $framesPerPixel,
+                                                                  caretPosition: $caretPosition,
                                                                   sample: viewModel.sample)
                             }
                         }

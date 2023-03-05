@@ -12,6 +12,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
     typealias NSViewControllerType = SampleViewController
     
     @Binding var framesPerPixel: UInt64
+    @Binding var caretPosition: UInt64
 
     var sample: ISample?
     
@@ -24,8 +25,8 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
     
     func updateNSViewController(_ nsViewController: Self.NSViewControllerType, context: Self.Context) {
         nsViewController.representedObject = sample
-        print("Setting fpp in controller to \(UInt(framesPerPixel))")
         nsViewController.framesPerPixel = UInt(framesPerPixel)
+        nsViewController.caretPosition = caretPosition
     }
     
     class Coordinator : NSObject, SampleViewDelegate {
@@ -36,8 +37,11 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
         }
         
         func framesPerPixelChanged(framesPerPixel: UInt) {
-            print("Coordinator fpp changed")
             parent.framesPerPixel = UInt64(framesPerPixel)
+        }
+        
+        func caretPositionChanged(caretPosition: UInt64) {
+            parent.caretPosition = caretPosition
         }
     }
     
@@ -48,6 +52,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
 
 protocol SampleViewDelegate {
     func framesPerPixelChanged(framesPerPixel: UInt)
+    func caretPositionChanged(caretPosition: UInt64)
 }
 
 class SampleViewController: NSViewController, SampleViewDelegate {
@@ -57,15 +62,22 @@ class SampleViewController: NSViewController, SampleViewDelegate {
     var sampleView: SampleView!
     var caretConstraint: NSLayoutConstraint?
     
-    var caretPositionObserver: NSKeyValueObservation?
-    
     var framesPerPixel: UInt = 256 {
         didSet {
-            print("Set FPP in controller")
             sampleView.setFramesPerPixel(newFramesPerPixel: framesPerPixel)
         }
     }
     
+    var caretPosition: UInt64 = 0 {
+        didSet {
+            let caretPixel = caretPosition / UInt64(framesPerPixel)
+            
+            if let caretConstraint = caretConstraint {
+                caretConstraint.constant = CGFloat(caretPixel)
+            }
+        }
+    }
+
     override func loadView() {
         sampleView = SampleView()
         
@@ -82,29 +94,21 @@ class SampleViewController: NSViewController, SampleViewDelegate {
         view.bottomAnchor.constraint(equalTo: caret.bottomAnchor).isActive = true
         caretConstraint = caret.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         caretConstraint?.isActive = true
-        
-        caretPositionObserver = sampleView.observe(\.caretFramePosition,
-                                                    options: [.initial, .new]) { [self] (sampleView, change) in
-            if let newValue = change.newValue {
-                moveCaret(caretFrame: newValue)
-            }
-        }
     }
     
-    func moveCaret(caretFrame: UInt64) {
-        let caretPixel = caretFrame / UInt64(framesPerPixel)
-        
-        if let caretConstraint = caretConstraint {
-            caretConstraint.constant = CGFloat(caretPixel)
-        }
-    }
-    
+    // FIXME: are these required? This isn't a delegate anymore
     func framesPerPixelChanged(framesPerPixel: UInt) {
-        print ("fpp changed in controller")
         guard let delegate = delegate else {
             return
         }
         delegate.framesPerPixelChanged(framesPerPixel: framesPerPixel)
+    }
+    
+    func caretPositionChanged(caretPosition: UInt64) {
+        guard let delegate = delegate else {
+            return
+        }
+        delegate.caretPositionChanged(caretPosition: caretPosition)
     }
     
     override var representedObject: Any? {
@@ -138,11 +142,8 @@ class SampleView: NSView {
         return NSSize(width: width, height: NSView.noIntrinsicMetric)
     }
     
-    @objc dynamic var caretFramePosition: UInt64 = 0
-    
     var framesPerPixel: UInt = 256
     func setFramesPerPixel(newFramesPerPixel: UInt) {
-        print("fpp set in view")
         if (framesPerPixel != newFramesPerPixel) {
             framesPerPixel = newFramesPerPixel
             invalidateIntrinsicContentSize()
@@ -160,7 +161,7 @@ class SampleView: NSView {
     
     override func mouseDown(with event: NSEvent) {
         let locationInView = convert(event.locationInWindow, from: nil)
-        caretFramePosition = UInt64(locationInView.x) * UInt64(framesPerPixel)
+        delegate?.caretPositionChanged(caretPosition: UInt64(locationInView.x) * UInt64(framesPerPixel))
     }
     
     func drawBrokenSample(_ dirtyRect: NSRect) {

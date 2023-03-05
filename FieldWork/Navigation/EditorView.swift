@@ -26,9 +26,7 @@ struct EditorView: View {
             case .details:
                 InfoView(model: model)
             case .sample:
-                let _ = print("New sample editor \(model.framesPerPixel)")
-    
-                SampleEditor(recording: model.selectedRecording, framesPerPixel: $model.framesPerPixel)
+                SampleEditor(recording: model.selectedRecording, framesPerPixel: $model.framesPerPixel, caretPosition: $model.caretPosition)
             }
         }
         .toolbar {
