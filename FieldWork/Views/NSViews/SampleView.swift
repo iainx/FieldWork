@@ -114,12 +114,18 @@ class SampleView: NSView {
             guard let sample = sample else {
                 return
             }
-            sampleLoadedObserver = NotificationCenter.default
-                .addObserver(forName: .sampleDidLoadNotification, object: sample,
-                             queue: OperationQueue.main) { note in
-                    self.invalidateIntrinsicContentSize()
-                    self.needsDisplay = true
-                }
+            
+            if sample.loaded {
+                self.invalidateIntrinsicContentSize()
+                self.needsDisplay = true
+            } else {
+                sampleLoadedObserver = NotificationCenter.default
+                    .addObserver(forName: .sampleDidLoadNotification, object: sample,
+                                 queue: OperationQueue.main) { note in
+                        self.invalidateIntrinsicContentSize()
+                        self.needsDisplay = true
+                    }
+            }
         }
     }
     
