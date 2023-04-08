@@ -55,7 +55,7 @@ protocol SampleViewDelegate {
     func caretPositionChanged(caretPosition: UInt64)
 }
 
-class SampleViewController: NSViewController, SampleViewDelegate {
+class SampleViewController: NSViewController {
     var delegate: SampleViewDelegate?
     
     var caret: CaretView!
@@ -94,21 +94,6 @@ class SampleViewController: NSViewController, SampleViewDelegate {
         view.bottomAnchor.constraint(equalTo: caret.bottomAnchor).isActive = true
         caretConstraint = caret.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         caretConstraint?.isActive = true
-    }
-    
-    // FIXME: are these required? This isn't a delegate anymore
-    func framesPerPixelChanged(framesPerPixel: UInt) {
-        guard let delegate = delegate else {
-            return
-        }
-        delegate.framesPerPixelChanged(framesPerPixel: framesPerPixel)
-    }
-    
-    func caretPositionChanged(caretPosition: UInt64) {
-        guard let delegate = delegate else {
-            return
-        }
-        delegate.caretPositionChanged(caretPosition: caretPosition)
     }
     
     override var representedObject: Any? {
