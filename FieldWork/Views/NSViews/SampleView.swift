@@ -165,10 +165,7 @@ class SampleView: NSView {
             drawBrokenSample(dirtyRect)
             return
         }
-        
-        NSColor.controlBackgroundColor.setFill()
-        NSBezierPath.fill(dirtyRect)
-        
+
         if sample.numberOfChannels == 0 {
             return
         }
