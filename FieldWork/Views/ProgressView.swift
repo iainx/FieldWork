@@ -12,9 +12,11 @@ struct OperationProgress: View {
     
     @ObservedObject var viewModel = OperationProgressViewModel()
     
+    var name: String?
+    
     var body: some View {
         VStack {
-            Text("Loading \(viewModel.name)")
+            Text("Loading\(name != nil ? " " + name! : "")")
                 .font(.title)
             ProgressView(value: viewModel.progress)
                 .progressViewStyle(.linear)
@@ -27,12 +29,16 @@ struct OperationProgress: View {
 }
 
 class OperationProgressViewModel: ObservableObject {
-    @Published var name: String = ""
     @Published var progress: Double = 0.0
 }
 
 struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressView()
+        Group {
+            OperationProgress(operation: FieldworkOperation.previewOperation())
+                .previewDisplayName("No Name")
+            OperationProgress(operation: FieldworkOperation.previewOperation(), name: "Test Sample")
+                .previewDisplayName("Name")
+        }
     }
 }

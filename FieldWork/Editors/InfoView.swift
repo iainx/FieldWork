@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct InfoView: View {
-    @ObservedObject var model: FieldWorkViewModel
+    var name: String? = nil
     
     var body: some View {
-        if (model.selectedRecording == nil) {
+        if (name == nil) {
             Text("Select a recording")
                 .font(.title)
                 .frame(maxWidth:.infinity,
@@ -20,8 +20,8 @@ struct InfoView: View {
                        maxHeight:.infinity)
                 .background(Color.blue)
         } else {
-            let recording = model.selectedRecording!
-            Text("Info: \(recording.name!)")
+            let name = name!
+            Text("Info: \(name)")
                 .frame(maxWidth:.infinity,
                        minHeight:0,
                        idealHeight:250,
@@ -32,12 +32,10 @@ struct InfoView: View {
 }
 
 struct InfoView_Previews: PreviewProvider {
-    static let persistenceController = PreviewPersistenceController()
-    static let recordingService: RecordingService = RecordingService(managedObjectContext: persistenceController.mainContext, persistenceController: persistenceController)
-    static let model: FieldWorkViewModel = FieldWorkViewModel(recordingService: recordingService)
-    
     static var previews: some View {
-        InfoView(model: model)
+        Group {
+            InfoView(name: nil)
+            InfoView(name: "Test Recording")
+        }
     }
 }
-

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SidebarView: View {
-    @EnvironmentObject var recordingService: RecordingService
-    @ObservedObject var model: FieldWorkViewModel
+    var recordings: [Recording]
+    @Binding var selectedRecording: Recording?
     
     var body: some View {
-        List (model.recordings, selection: $model.selectedRecording) { recording in
+        List (recordings, selection: $selectedRecording) { recording in
             Text(recording.name ?? "<Unknown>")
                 .tag(recording)
         }
@@ -26,11 +26,10 @@ struct SidebarView_Previews: PreviewProvider {
     static let persistenceController = PreviewPersistenceController()
     static let recordingService = RecordingService(managedObjectContext: persistenceController.mainContext,
                                                    persistenceController: persistenceController)
-    static let model = FieldWorkViewModel(recordingService: recordingService)
     
     static var previews: some View {
-        SidebarView(model: model)
-            .environment(\.managedObjectContext, persistenceController.mainContext)
-            .environmentObject(recordingService)
+        SidebarView(recordings: recordingService.getRecordings(),
+                    selectedRecording: .constant(nil))
+            .frame(width: 200)
     }
 }

@@ -14,9 +14,16 @@ class FieldWorkViewModel : NSObject, ObservableObject, NSFetchedResultsControlle
     @Published var framesPerPixel: UInt64 = 256
     @Published var caretPosition: UInt64 = 0
     
-    var controller: NSFetchedResultsController<Recording>
+    var controller: NSFetchedResultsController<Recording>?
     
-    init(recordingService: RecordingService) {
+    override init()
+    {
+        selectedRecording = nil
+        controller = nil
+        super.init()
+    }
+    
+    func loadData(recordingService: RecordingService) {
         let context = recordingService.managedObjectContext
         let fetchRequest = Recording.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date",
@@ -25,23 +32,21 @@ class FieldWorkViewModel : NSObject, ObservableObject, NSFetchedResultsControlle
                                                 managedObjectContext: context,
                                                 sectionNameKeyPath: nil,
                                                 cacheName: nil)
-
-        super.init()
         
-        controller.delegate = self
+        controller!.delegate = self
         
         do {
-            try controller.performFetch()
+            try controller!.performFetch()
         } catch {
             fatalError("Failed to fetch entities: \(error)")
         }
         
-        recordings = controller.fetchedObjects ?? []
+        recordings = controller!.fetchedObjects ?? []
     }
     
     func controllerDidChangeContent(_ c: NSFetchedResultsController<NSFetchRequestResult>) {
     
-        recordings = controller.fetchedObjects ?? []
+        recordings = controller!.fetchedObjects ?? []
     }
     
     func zoomIn() {

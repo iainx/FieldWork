@@ -11,23 +11,49 @@ struct ContentView: View {
     @SceneStorage("selection") private var selectedRecordingID: String?
     @EnvironmentObject var recordingService: RecordingService
     
-    @StateObject var model: FieldWorkViewModel
+    @Binding var framesPerPixel: UInt64
+    @Binding var caretPosition: UInt64
+    @Binding var currentRecording: Recording?
+    var recordings: [Recording]
     
     var body: some View {
-        NavigationView {
-            SidebarView(model: model)
-            EditorView(model: model)
+        NavigationView{
+            SidebarView(recordings: recordings,
+                        selectedRecording: $currentRecording)
+            EditorView(framesPerPixel: $framesPerPixel,
+                       caretPosition: $caretPosition,
+                       sample: sampleForRecording(recording: currentRecording),
+                       currentName: currentRecording?.name)
         }
+    }
+}
+
+extension ContentView {
+    func sampleForRecording(recording: Recording?) -> ISample? {
+        guard let r = recording else {
+            return nil
+        }
+        
+        do {
+            let sample = try recordingService.sampleFor(recording: r)
+            return sample
+        } catch {
+            print("Error getting sample \(error)")
+        }
+        
+        return nil
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static let persistenceController = PreviewPersistenceController()
     static let recordingService: RecordingService = RecordingService(managedObjectContext: persistenceController.mainContext, persistenceController: persistenceController)
-    static let model: FieldWorkViewModel = FieldWorkViewModel(recordingService: recordingService)
     
     static var previews: some View {
-        ContentView(model: model)
+        ContentView(framesPerPixel: .constant(256),
+                    caretPosition: .constant(0),
+                    currentRecording: .constant(nil),
+                    recordings: recordingService.getRecordings())
             .environment(\.managedObjectContext, persistenceController.mainContext)
             .environmentObject(recordingService)
     }

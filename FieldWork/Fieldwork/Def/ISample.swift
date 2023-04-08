@@ -17,7 +17,7 @@ import Foundation
     var sampleRate: UInt { get }
     var bitrate: UInt { get }
 
-    var url: URL? { get }
+    var url: URL? { get set }
 
     var currentOperation: FieldworkOperation? { get }
 

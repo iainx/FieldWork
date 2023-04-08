@@ -7,8 +7,8 @@
 
 import Foundation
 
-class FieldworkSample : NSObject, ISample {
-    var loaded: Bool = false
+class FieldworkSample : NSObject, ObservableObject, ISample {
+    @Published var loaded: Bool = false
     
     var channelData: [MLNSampleChannel] = []
     
@@ -22,7 +22,7 @@ class FieldworkSample : NSObject, ISample {
     
     var url: URL? = nil
     
-    var currentOperation: FieldworkOperation?
+    @Published var currentOperation: FieldworkOperation?
 
     override init() {
         
@@ -53,6 +53,33 @@ class FieldworkSample : NSObject, ISample {
         
         NotificationCenter.default.post(name: .sampleDidLoadNotification, object: self)
         self.loaded = true
+    }
+}
+
+extension FieldworkSample {
+    static func PreviewSample(channelCount: UInt) -> FieldworkSample {
+        let sample = FieldworkSample()
+        sample.numberOfChannels = channelCount
+        sample.bitrate = 16
+        sample.sampleRate = 44100
+        sample.numberOfFrames = 44100
+        sample.loaded = true
+        
+        var channels:[MLNSampleChannel] = []
+        
+        for _ in 0..<channelCount {
+            let channel = MLNSampleChannel()
+            
+            let data = UnsafeMutablePointer<Float>.allocate(capacity: 44100)
+            for i in 0..<44100 {
+                data[i] = sin(Float(i) * Float.pi / 180)
+            }
+            channel.addData(data, withByteLength: 44100)
+            channels.append(channel)
+        }
+        sample.channelData = channels
+        
+        return sample
     }
 }
 

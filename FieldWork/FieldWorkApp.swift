@@ -15,23 +15,29 @@ struct FieldWorkApp: App {
     let recordingService: RecordingService
     let fileService: FileService
     
-    let model: FieldWorkViewModel
+    @StateObject var model = FieldWorkViewModel()
     
     init() {
         recordingService = RecordingService(managedObjectContext: persistenceController.mainContext,
                                             persistenceController: persistenceController)
         recordingService.sampleFactory = DefaultSampleFactory()
         
-        model = FieldWorkViewModel(recordingService: recordingService)
         fileService = FileService(recordingService: recordingService)
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView(model: model)
+            ContentView(framesPerPixel: $model.framesPerPixel,
+                        caretPosition: $model.caretPosition,
+                        currentRecording: $model.selectedRecording,
+                        recordings: model.recordings)
                 .environment(\.managedObjectContext, persistenceController.mainContext)
                 .environmentObject(recordingService)
                 .environmentObject(fileService)
+                .environmentObject(model)
+                .onAppear() {
+                    model.loadData(recordingService: recordingService)
+                }
         }
         .commands {
             SidebarCommands()
@@ -43,3 +49,4 @@ struct FieldWorkApp: App {
         }
     }
 }
+

@@ -16,17 +16,21 @@ struct EditorView: View {
     
     @SceneStorage("viewMode") private var mode: ViewMode = .details
 
-
-    @EnvironmentObject var recordingService: RecordingService
-    @ObservedObject var model: FieldWorkViewModel
+    @Binding var framesPerPixel: UInt64
+    @Binding var caretPosition: UInt64
+    
+    var sample: ISample?
+    var currentName: String?
     
     var body: some View {
         Group {
             switch mode {
             case .details:
-                InfoView(model: model)
+                InfoView(name: currentName)
             case .sample:
-                SampleEditor(recording: model.selectedRecording, framesPerPixel: $model.framesPerPixel, caretPosition: $model.caretPosition)
+                SampleEditor(sample: sample as? FieldworkSample/*sampleForRecording(recording: recording) as? FieldworkSample*/,
+                             framesPerPixel: $framesPerPixel,
+                             caretPosition: $caretPosition)
             }
         }
         .toolbar {
@@ -38,13 +42,21 @@ struct EditorView: View {
 struct EditorView_Previews: PreviewProvider {
     static let persistenceController = PreviewPersistenceController()
     static let recordingService: RecordingService = RecordingService(managedObjectContext: persistenceController.mainContext, persistenceController: persistenceController)
-    static let model: FieldWorkViewModel = FieldWorkViewModel(recordingService: recordingService)
     
     static var previews: some View {
         Group {
-            EditorView(model: model)
+            EditorView(framesPerPixel: .constant(256),
+                       caretPosition: .constant(0),
+                       sample: nil,
+                       currentName: nil)
                 .environmentObject(recordingService)
+                .previewDisplayName("No Sample")
+            EditorView(framesPerPixel: .constant(256),
+                       caretPosition: .constant(0),
+                       sample: nil, // Make preview sample
+                       currentName: "test")
+            .environmentObject(recordingService)
+            .previewDisplayName("Sample")
         }
     }
 }
-

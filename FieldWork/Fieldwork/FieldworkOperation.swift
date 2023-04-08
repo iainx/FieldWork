@@ -13,3 +13,11 @@ class FieldworkOperation: Operation {
     
     static let defaultQueue = OperationQueue()
 }
+
+extension FieldworkOperation {
+    static func previewOperation() -> FieldworkOperation {
+        let op = FieldworkOperation()
+        op.progress = 0.5
+        return op
+    }
+}

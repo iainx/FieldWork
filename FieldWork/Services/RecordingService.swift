@@ -134,6 +134,8 @@ extension RecordingService {
         
         let sample = sampleFactory.createSample()
         sampleCache[recording] = sample
+        
+        sample.url = recording.filename
         return sample
     }
 }
