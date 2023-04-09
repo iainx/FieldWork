@@ -13,6 +13,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
     
     @Binding var framesPerPixel: UInt64
     @Binding var caretPosition: UInt64
+    @Binding var selectionRange: CountableClosedRange<UInt64>
 
     var sample: ISample?
     
@@ -27,6 +28,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
         nsViewController.representedObject = sample
         nsViewController.framesPerPixel = UInt(framesPerPixel)
         nsViewController.caretPosition = caretPosition
+        nsViewController.selectionRange = selectionRange
     }
     
     class Coordinator : NSObject, SampleViewDelegate {
@@ -43,6 +45,10 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
         func caretPositionChanged(caretPosition: UInt64) {
             parent.caretPosition = caretPosition
         }
+        
+        func selectionChanged(selection: CountableClosedRange<UInt64>) {
+            parent.selectionRange = selection
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -53,6 +59,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
 protocol SampleViewDelegate {
     func framesPerPixelChanged(framesPerPixel: UInt)
     func caretPositionChanged(caretPosition: UInt64)
+    func selectionChanged(selection: CountableClosedRange<UInt64>)
 }
 
 class SampleViewController: NSViewController {
@@ -75,6 +82,12 @@ class SampleViewController: NSViewController {
             if let caretConstraint = caretConstraint {
                 caretConstraint.constant = CGFloat(caretPixel)
             }
+        }
+    }
+    
+    var selectionRange: CountableClosedRange<UInt64> = 0...0 {
+        didSet {
+            sampleView.setSelection(newSelection: selectionRange)
         }
     }
 
@@ -142,6 +155,14 @@ class SampleView: NSView {
         }
     }
     
+    var selection: CountableClosedRange<UInt64> = 10000...440000
+    func setSelection(newSelection: CountableClosedRange<UInt64>) {
+        if (selection != newSelection) {
+            selection = newSelection
+            needsDisplay = true
+        }
+    }
+    
     var width: CGFloat {
         guard let sample = sample else {
             return NSView.noIntrinsicMetric
@@ -170,6 +191,14 @@ class SampleView: NSView {
             return
         }
         
+        if !selection.isEmpty {
+            let x1 = selection.lowerBound / UInt64 (framesPerPixel)
+            let x2 = selection.upperBound / UInt64 (framesPerPixel)
+            let selectionRect = CGRect(x: CGFloat(x1), y: 0, width: CGFloat(x2 - x1), height: frame.height)
+            
+            drawSelection(selectionRect)
+        }
+        
         let channelHeight = UInt(frame.height) / sample.numberOfChannels
         let fpp = framesPerPixel
         for (index, channel) in sample.channelData.enumerated() {
@@ -186,6 +215,11 @@ class SampleView: NSView {
                         strokeColor: index == 0 ? NSColor.systemRed : NSColor.systemBlue)
         }
         
+    }
+    
+    func drawSelection(_ selectionRect: CGRect) {
+        NSColor.selectedTextBackgroundColor.set()
+        NSBezierPath.fill(selectionRect)
     }
     
     func drawChannel(_ channel: MLNSampleChannel,

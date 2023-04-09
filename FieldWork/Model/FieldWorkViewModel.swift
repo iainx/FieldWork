@@ -13,6 +13,7 @@ class FieldWorkViewModel : NSObject, ObservableObject, NSFetchedResultsControlle
     @Published var selectedRecording: Recording?
     @Published var framesPerPixel: UInt64 = 256
     @Published var caretPosition: UInt64 = 0
+    @Published var selectionRange: CountableClosedRange<UInt64> = 0...0
     
     var controller: NSFetchedResultsController<Recording>?
     
