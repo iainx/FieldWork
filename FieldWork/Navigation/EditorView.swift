@@ -18,7 +18,7 @@ struct EditorView: View {
 
     @Binding var framesPerPixel: UInt64
     @Binding var caretPosition: UInt64
-    @Binding var selectionRange: CountableClosedRange<UInt64>
+    @Binding var selection: Selection
     
     var sample: ISample?
     var currentName: String?
@@ -29,10 +29,10 @@ struct EditorView: View {
             case .details:
                 InfoView(name: currentName)
             case .sample:
-                SampleEditor(sample: sample as? FieldworkSample/*sampleForRecording(recording: recording) as? FieldworkSample*/,
+                SampleEditor(sample: sample as? FieldworkSample,
                              framesPerPixel: $framesPerPixel,
                              caretPosition: $caretPosition,
-                            selectionRange: $selectionRange)
+                            selection: $selection)
             }
         }
         .toolbar {
@@ -49,14 +49,14 @@ struct EditorView_Previews: PreviewProvider {
         Group {
             EditorView(framesPerPixel: .constant(256),
                        caretPosition: .constant(0),
-                       selectionRange: .constant(0...0),
+                       selection: .constant(Selection()),
                        sample: nil,
                        currentName: nil)
                 .environmentObject(recordingService)
                 .previewDisplayName("No Sample")
             EditorView(framesPerPixel: .constant(256),
                        caretPosition: .constant(0),
-                       selectionRange: .constant(0...0),
+                       selection: .constant(Selection()),
                        sample: nil, // Make preview sample
                        currentName: "test")
             .environmentObject(recordingService)

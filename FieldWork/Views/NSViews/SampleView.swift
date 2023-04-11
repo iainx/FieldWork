@@ -13,7 +13,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
     
     @Binding var framesPerPixel: UInt64
     @Binding var caretPosition: UInt64
-    @Binding var selectionRange: CountableClosedRange<UInt64>
+    @Binding var selection: Selection
 
     var sample: ISample?
     
@@ -28,7 +28,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
         nsViewController.representedObject = sample
         nsViewController.framesPerPixel = UInt(framesPerPixel)
         nsViewController.caretPosition = caretPosition
-        nsViewController.selectionRange = selectionRange
+        nsViewController.selection = selection
     }
     
     class Coordinator : NSObject, SampleViewDelegate {
@@ -46,8 +46,8 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
             parent.caretPosition = caretPosition
         }
         
-        func selectionChanged(selection: CountableClosedRange<UInt64>) {
-            parent.selectionRange = selection
+        func selectionChanged(selection: Selection) {
+            parent.selection = selection
         }
     }
     
@@ -59,7 +59,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
 protocol SampleViewDelegate {
     func framesPerPixelChanged(framesPerPixel: UInt)
     func caretPositionChanged(caretPosition: UInt64)
-    func selectionChanged(selection: CountableClosedRange<UInt64>)
+    func selectionChanged(selection: Selection)
 }
 
 class SampleViewController: NSViewController {
@@ -85,9 +85,9 @@ class SampleViewController: NSViewController {
         }
     }
     
-    var selectionRange: CountableClosedRange<UInt64> = 0...0 {
+    var selection: Selection = Selection() {
         didSet {
-            sampleView.setSelection(newSelection: selectionRange)
+            sampleView.setSelection(newSelection: selection)
         }
     }
 
@@ -148,16 +148,16 @@ class SampleView: NSView {
     
     var framesPerPixel: UInt = 256
     func setFramesPerPixel(newFramesPerPixel: UInt) {
-        if (framesPerPixel != newFramesPerPixel) {
+        if framesPerPixel != newFramesPerPixel {
             framesPerPixel = newFramesPerPixel
             invalidateIntrinsicContentSize()
             needsDisplay = true
         }
     }
     
-    var selection: CountableClosedRange<UInt64> = 10000...440000
-    func setSelection(newSelection: CountableClosedRange<UInt64>) {
-        if (selection != newSelection) {
+    var selection: Selection = Selection() // default to an empty selection
+    func setSelection(newSelection: Selection) {
+        if selection != newSelection {
             selection = newSelection
             needsDisplay = true
         }
@@ -192,8 +192,8 @@ class SampleView: NSView {
         }
         
         if !selection.isEmpty {
-            let x1 = selection.lowerBound / UInt64 (framesPerPixel)
-            let x2 = selection.upperBound / UInt64 (framesPerPixel)
+            let x1 = selection.selectedRange.lowerBound / UInt64 (framesPerPixel)
+            let x2 = selection.selectedRange.upperBound / UInt64 (framesPerPixel)
             let selectionRect = CGRect(x: CGFloat(x1), y: 0, width: CGFloat(x2 - x1), height: frame.height)
             
             drawSelection(selectionRect)

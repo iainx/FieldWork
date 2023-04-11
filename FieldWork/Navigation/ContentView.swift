@@ -13,7 +13,7 @@ struct ContentView: View {
     
     @Binding var framesPerPixel: UInt64
     @Binding var caretPosition: UInt64
-    @Binding var selectionRange: CountableClosedRange<UInt64>
+    @Binding var selection: Selection
     @Binding var currentRecording: Recording?
     var recordings: [Recording]
     
@@ -23,7 +23,7 @@ struct ContentView: View {
                         selectedRecording: $currentRecording)
             EditorView(framesPerPixel: $framesPerPixel,
                        caretPosition: $caretPosition,
-                       selectionRange: $selectionRange,
+                       selection: $selection,
                        sample: sampleForRecording(recording: currentRecording),
                        currentName: currentRecording?.name)
         }
@@ -54,7 +54,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(framesPerPixel: .constant(256),
                     caretPosition: .constant(0),
-                    selectionRange: .constant(0...0),
+                    selection: .constant(Selection()),
                     currentRecording: .constant(nil),
                     recordings: recordingService.getRecordings())
             .environment(\.managedObjectContext, persistenceController.mainContext)

@@ -37,6 +37,7 @@
 		AE6DD735289D0D7F00EF3B4A /* MLNSampleBlockSilence.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD734289D0D7F00EF3B4A /* MLNSampleBlockSilence.m */; };
 		AE6DD73E289D22B900EF3B4A /* MLNCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD73D289D22B900EF3B4A /* MLNCacheManager.m */; };
 		AE764DC52885F9FF0060E6CC /* EditorModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE764DC42885F9FF0060E6CC /* EditorModePicker.swift */; };
+		AE780FF029E363AE00E490F7 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE780FEF29E363AE00E490F7 /* Selection.swift */; };
 		AE79DED428DD038A009DA7A8 /* SampleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE79DED328DD0389009DA7A8 /* SampleMetadata.swift */; };
 		AE839FCE28988331005F579C /* PreviewPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE839FCD28988331005F579C /* PreviewPersistenceController.swift */; };
 		AE90B32D28971BBE00EE6F72 /* RecordingMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B32C28971BBE00EE6F72 /* RecordingMetadata.swift */; };
@@ -126,6 +127,7 @@
 		AE6DD73C289D22B900EF3B4A /* MLNCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLNCacheManager.h; sourceTree = "<group>"; };
 		AE6DD73D289D22B900EF3B4A /* MLNCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLNCacheManager.m; sourceTree = "<group>"; };
 		AE764DC42885F9FF0060E6CC /* EditorModePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorModePicker.swift; sourceTree = "<group>"; };
+		AE780FEF29E363AE00E490F7 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		AE79DED328DD0389009DA7A8 /* SampleMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMetadata.swift; sourceTree = "<group>"; };
 		AE839FCD28988331005F579C /* PreviewPersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPersistenceController.swift; sourceTree = "<group>"; };
 		AE90B32C28971BBE00EE6F72 /* RecordingMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetadata.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				AE79DED328DD0389009DA7A8 /* SampleMetadata.swift */,
 				AE0AAC1828C3F0BA00B4345D /* ISample.swift */,
 				AEACA2B828C938BE00E19AE4 /* ISampleLoader.swift */,
+				AE780FEF29E363AE00E490F7 /* Selection.swift */,
 			);
 			path = Def;
 			sourceTree = "<group>";
@@ -443,7 +446,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					AE0335CD2883403C00C22F7D = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -554,6 +557,7 @@
 				AE0335FD288444FA00C22F7D /* SidebarView.swift in Sources */,
 				AE6DD705289D094900EF3B4A /* MLNSampleChannel.m in Sources */,
 				AEDA2DD029A6C1950087A7CE /* ViewCommands.swift in Sources */,
+				AE780FF029E363AE00E490F7 /* Selection.swift in Sources */,
 				AE6DD70A289D094900EF3B4A /* MLNSampleChannelIterator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,6 +629,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -685,6 +690,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -716,6 +722,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"FieldWork/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -731,10 +738,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.falsevictories.FieldWork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "FieldWork/Marlin/FieldWork-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -749,6 +760,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"FieldWork/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -764,9 +776,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.falsevictories.FieldWork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "FieldWork/Marlin/FieldWork-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -777,6 +793,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
@@ -796,6 +813,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
@@ -814,6 +832,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -831,6 +850,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;

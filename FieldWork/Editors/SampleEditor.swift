@@ -16,7 +16,7 @@ struct SampleEditor: View {
     var sample: FieldworkSample?
     @Binding var framesPerPixel: UInt64
     @Binding var caretPosition: UInt64
-    @Binding var selectionRange: CountableClosedRange<UInt64>
+    @Binding var selection: Selection
     
     var body: some View {
         VStack {
@@ -29,7 +29,7 @@ struct SampleEditor: View {
                                 ScrollView(.horizontal) {
                                     SampleViewControllerRepresentable(framesPerPixel: $framesPerPixel,
                                                                       caretPosition: $caretPosition,
-                                                                      selectionRange: $selectionRange,
+                                                                      selection: $selection,
                                                                       sample: sample)
                                 }
                             }
@@ -97,15 +97,29 @@ struct SampleEditor_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            SampleEditor(framesPerPixel: .constant(256), caretPosition: .constant(0), selectionRange: .constant(0...0))
+            SampleEditor(framesPerPixel: .constant(256),
+                         caretPosition: .constant(0),
+                         selection: .constant(Selection()))
                 .previewDisplayName("No Selection")
-            SampleEditor(sample: nil, framesPerPixel: .constant(256), caretPosition: .constant(0), selectionRange: .constant(0...0))
+            SampleEditor(sample: nil,
+                         framesPerPixel: .constant(256),
+                         caretPosition: .constant(0),
+                         selection: .constant(Selection()))
                 .previewDisplayName("Loading")
-            SampleEditor(sample: FieldworkSample.PreviewSample(channelCount: 1), framesPerPixel: .constant(10), caretPosition: .constant(0), selectionRange: .constant(0...0))
+            SampleEditor(sample: FieldworkSample.PreviewSample(channelCount: 1),
+                         framesPerPixel: .constant(10),
+                         caretPosition: .constant(0),
+                         selection: .constant(Selection()))
                 .previewDisplayName("10 fpp")
-            SampleEditor(sample: FieldworkSample.PreviewSample(channelCount: 2), framesPerPixel: .constant(1), caretPosition: .constant(0), selectionRange: .constant(0...0))
+            SampleEditor(sample: FieldworkSample.PreviewSample(channelCount: 2),
+                         framesPerPixel: .constant(1),
+                         caretPosition: .constant(0),
+                         selection: .constant(Selection()))
                 .previewDisplayName("1 fpp")
-            SampleEditor(sample: FieldworkSample.PreviewSample(channelCount: 2), framesPerPixel: .constant(1), caretPosition: .constant(0), selectionRange: .constant(0...270))
+            SampleEditor(sample: FieldworkSample.PreviewSample(channelCount: 2),
+                         framesPerPixel: .constant(1),
+                         caretPosition: .constant(0),
+                         selection: .constant(Selection(selectedRange: 0...250)))
                 .previewDisplayName("Selection")
         }
         .environmentObject(recordingService)

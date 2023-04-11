@@ -29,7 +29,7 @@ struct FieldWorkApp: App {
         WindowGroup {
             ContentView(framesPerPixel: $model.framesPerPixel,
                         caretPosition: $model.caretPosition,
-                        selectionRange: $model.selectionRange,
+                        selection: $model.selection,
                         currentRecording: $model.selectedRecording,
                         recordings: model.recordings)
                 .environment(\.managedObjectContext, persistenceController.mainContext)
