@@ -28,6 +28,7 @@ struct SampleViewControllerRepresentable : NSViewControllerRepresentable {
         nsViewController.representedObject = sample
         nsViewController.framesPerPixel = UInt(framesPerPixel)
         nsViewController.caretPosition = caretPosition
+        
         nsViewController.selection = selection
     }
     
@@ -77,10 +78,9 @@ class SampleViewController: NSViewController {
     
     var caretPosition: UInt64 = 0 {
         didSet {
-            let caretPixel = caretPosition / UInt64(framesPerPixel)
-            
+            let caretPoint = sampleView.convertFrameToPoint(caretPosition)
             if let caretConstraint = caretConstraint {
-                caretConstraint.constant = CGFloat(caretPixel)
+                caretConstraint.constant = CGFloat(caretPoint.x)
             }
         }
     }
@@ -88,6 +88,7 @@ class SampleViewController: NSViewController {
     var selection: Selection = Selection() {
         didSet {
             sampleView.setSelection(newSelection: selection)
+            caret.isHidden = !selection.isEmpty
         }
     }
 
@@ -119,7 +120,13 @@ class SampleViewController: NSViewController {
 }
 
 class SampleView: NSView {
+    enum SelectionDirection {
+        case left, right
+    }
+    
     var delegate: SampleViewDelegate?
+    var dragEvent: NSEvent?
+    var selectionDirection: SelectionDirection = .right
     
     var sampleLoadedObserver: NSObjectProtocol?
     var sample: ISample? {
@@ -171,9 +178,260 @@ class SampleView: NSView {
         return ceil(CGFloat(sample.numberOfFrames) / CGFloat(framesPerPixel))
     }
     
+    func convertPointToFrame(_ point: NSPoint) -> UInt64 {
+        let scaledPoint = convertToBacking(point)
+        
+        return (scaledPoint.x < 0) ? 0 : UInt64(scaledPoint.x) * UInt64(framesPerPixel)
+    }
+    
+    func convertFrameToPoint(_ frame: UInt64) -> NSPoint {
+        let scaledPoint = NSPoint(x: Double(frame / UInt64(framesPerPixel)), y: 0.0)
+        return convertFromBacking(scaledPoint)
+    }
+    
     override func mouseDown(with event: NSEvent) {
         let locationInView = convert(event.locationInWindow, from: nil)
-        delegate?.caretPositionChanged(caretPosition: UInt64(locationInView.x) * UInt64(framesPerPixel))
+        
+        var selectionRect = selectionToRect(selection: selection)
+        
+        var mouseLoc = locationInView
+        let startPoint = locationInView
+        var lastPoint = locationInView
+        
+        var insideSelection = false
+        
+        // Need to handle resizing selection: see marlinx
+        
+        let possibleStartFrame = convertPointToFrame(startPoint)
+        insideSelection = selection.frameIsInsideSelection(possibleStartFrame)
+//        possibleStartFrame = zxFrameFromFrame()
+
+        // Grab the mouse and handle everything in a modal event loop
+        let eventMask: NSEvent.EventTypeMask = [.leftMouseUp, .leftMouseDragged, .periodic]
+        var dragged = false
+        var timerOn = false
+
+        var nextEvent = window?.nextEvent(matching: eventMask)
+        while nextEvent != nil {
+            switch nextEvent?.type {
+            case .periodic:
+                if let dragEvent = dragEvent {
+                    if !insideSelection {
+                        resizeSelection(dragEvent)
+                    } else {
+                        let newMouseLoc = convert(dragEvent.locationInWindow, from:nil)
+                        let dx = newMouseLoc.x - lastPoint.x
+                        let scaleDX = convertToBacking(NSPoint(x: dx, y: 0))
+                        
+                        moveSelectionByOffset(scaleDX.x)
+                        lastPoint = newMouseLoc
+                    }
+                    autoscroll(with: dragEvent)
+                }
+                break
+                
+            case .leftMouseDragged:
+                if !dragged && /* dragHandle == DragHandleNone && */ !insideSelection {
+                    if !selection.isEmpty {
+                        clearSelection()
+                    }
+                }
+                mouseLoc = convert(nextEvent!.locationInWindow, from: nil)
+                if !NSMouseInRect(mouseLoc, visibleRect, false) {
+                    // not inside the visible rectangle, we need to enable periodic events
+                    // to keep scrolling
+                    if !timerOn {
+                        NSEvent.startPeriodicEvents(afterDelay: 0.1, withPeriod: 0.1)
+                        timerOn = true
+                    }
+                    
+                    dragEvent = nextEvent
+                    break
+                } else if timerOn {
+                    // Mouse is inside the visible rectangle, so need to stop the timer
+                    NSEvent.stopPeriodicEvents()
+                    timerOn = false
+                    dragEvent = nil
+                }
+                
+                if mouseLoc.x != startPoint.x {
+                    dragged = true
+                    if !insideSelection {
+                        resizeSelection(nextEvent)
+                    } else {
+                        let dx = mouseLoc.x - lastPoint.x
+                        let scaledDX = convertToBacking(NSPoint(x: dx, y: 0))
+                        moveSelectionByOffset(scaledDX.x)
+                        
+                        lastPoint = mouseLoc
+                    }
+                }
+                break
+                
+            case .leftMouseUp:
+                NSEvent.stopPeriodicEvents()
+                timerOn = false
+                dragEvent = nil
+                
+                mouseLoc = convert(nextEvent!.locationInWindow, from: nil)
+                if !insideSelection {
+                    // If we weren't inside a selection, then we were in one of the tracking areas.
+                    // Work out which one.
+                    /*
+                    if (mouseLoc.x < startPoint.x) {
+                        _dragHandle = DragHandleStart;
+                    } else if (mouseLoc.x > startPoint.x) {
+                        _dragHandle = DragHandleEnd;
+                    }
+                     */
+                }
+                
+                if !dragged {
+                    if event.clickCount == 2 {
+                        selectRegionContainingFrame(possibleStartFrame)
+                        return
+                    } else if event.clickCount == 3 {
+                        selectAll()
+                        return
+                    }
+                    
+                    clearSelection()
+                    selectionChanged()
+                    
+                    moveCaretTo(caretPosition: possibleStartFrame)
+                    
+                    /*
+                    [self removeTrackingArea:_startTrackingArea];
+                    //[self removeTrackingArea:_endTrackingArea];
+                    _startTrackingArea = nil;
+                    //_endTrackingArea = nil;
+                    
+                    [self removeSelectionToolbar];
+                    */
+                    selectionRect.size.width += 0.5
+                    setNeedsDisplay(selectionRectToDirtyRect(selectionRect: selectionRect))
+                }
+                return
+                
+            default:
+                break
+            }
+            nextEvent = window?.nextEvent(matching: eventMask)
+        }
+        dragEvent = nil
+    }
+    
+    func moveCaretTo(caretPosition: UInt64) {
+        delegate?.caretPositionChanged(caretPosition: caretPosition)
+    }
+    
+    func resizeSelection(_ event: NSEvent?) {
+        if event == nil || sample == nil {
+            return
+        }
+        
+        let endPoint = convert(event!.locationInWindow, from: nil)
+        var tmp = convertPointToFrame(endPoint)
+        var otherEnd: UInt64
+        
+        let oldSelectionRect = selectionToRect(selection: selection)
+        
+        // tmp = zxFrameForFrame(tmp)
+        
+        if tmp >= sample!.numberOfFrames {
+            tmp = sample!.numberOfFrames - 1
+        }
+        
+        // Handle handles
+        if selection.isEmpty {
+            otherEnd = tmp
+        } else {
+            otherEnd = selectionDirection == .left ? selection.selectedRange.upperBound : selection.selectedRange.lowerBound
+        }
+    
+        let newDirection: SelectionDirection = (tmp < otherEnd) ? .left : .right;
+        let directionChange = newDirection != selectionDirection
+        
+        let startFrame: UInt64
+        let endFrame: UInt64
+        if (otherEnd < tmp) {
+            startFrame = otherEnd
+            endFrame = tmp
+        } else {
+            startFrame = tmp
+            endFrame = otherEnd
+        }
+        
+        selectionDirection = newDirection
+        
+        delegate?.selectionChanged(selection: Selection(selectedRange: startFrame...endFrame))
+    }
+    
+    func moveSelectionByOffset(_ offset: CGFloat) {
+        /*
+         NSUInteger offsetFrames = offset * _framesPerPixel;
+             NSRect oldSelectionRect = [self selectionToRect];
+             NSUInteger frameCount = _selectionEndFrame - _selectionStartFrame;
+             
+             _selectionStartFrame += offsetFrames;
+             _selectionEndFrame += offsetFrames;
+             
+             if (((NSInteger)_selectionStartFrame) < 0) {
+                 _selectionStartFrame = 0;
+                 _selectionEndFrame = frameCount;
+             } else if (_selectionEndFrame >= [_sample numberOfFrames]) {
+                 _selectionEndFrame = [_sample numberOfFrames] - 1;
+                 _selectionStartFrame = _selectionEndFrame - frameCount;
+             }
+
+             _selectionStartFrame = [self zxFrameForFrame:_selectionStartFrame];
+             _selectionEndFrame = [self zxFrameForFrame:_selectionEndFrame];
+             
+             NSRect newSelectionRect = [self selectionToRect];
+             
+             [self updateSelection:newSelectionRect
+                  oldSelectionRect:oldSelectionRect];
+         */
+    }
+    
+    func selectRegionContainingFrame(_ frame: UInt64) {
+        
+    }
+    
+    func selectAll() {
+        if let sample = sample {
+            selection = Selection(selectedRange: 0...sample.numberOfFrames)
+        }
+    }
+    
+    func clearSelection() {
+        // Need to force clear the selection because if we only set it through the delegate
+        // it then it won't be set when starting a new selection
+        setSelection(newSelection: .zero)
+        
+        delegate?.selectionChanged(selection: .zero)
+    }
+    
+    func selectionChanged()
+    {
+        
+    }
+    
+    func selectionToRect(selection: Selection) -> NSRect {
+        if selection.isEmpty {
+            return NSRect.zero
+        }
+        
+        let startPoint = convertFrameToPoint(selection.selectedRange.lowerBound)
+        let selectionFrameWidth = selection.selectedRange.upperBound - selection.selectedRange.lowerBound
+        let selectionWidth = convertFrameToPoint(selectionFrameWidth)
+        
+        return NSRect(x: startPoint.x, y: 0, width: selectionWidth.x, height: bounds.size.height)
+    }
+    
+    func selectionRectToDirtyRect(selectionRect rect: NSRect) -> NSRect {
+        // Should take into consideration the handles size
+        return rect
     }
     
     func drawBrokenSample(_ dirtyRect: NSRect) {
@@ -192,10 +450,7 @@ class SampleView: NSView {
         }
         
         if !selection.isEmpty {
-            let x1 = selection.selectedRange.lowerBound / UInt64 (framesPerPixel)
-            let x2 = selection.selectedRange.upperBound / UInt64 (framesPerPixel)
-            let selectionRect = CGRect(x: CGFloat(x1), y: 0, width: CGFloat(x2 - x1), height: frame.height)
-            
+            let selectionRect = selectionToRect(selection: selection)
             drawSelection(selectionRect)
         }
         

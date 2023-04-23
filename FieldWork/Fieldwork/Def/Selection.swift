@@ -16,8 +16,14 @@ struct Selection : Equatable {
     var type: SelectionType = .both
     var channel: UInt = 0
     
+    static let zero = Selection(type: .none)
+    
     var isEmpty: Bool {
         return type == .none || selectedRange.isEmpty
+    }
+    
+    func frameIsInsideSelection(_ frame: UInt64) -> Bool {
+        return false
     }
     
     public static func ==(lhs: Selection, rhs: Selection) -> Bool{

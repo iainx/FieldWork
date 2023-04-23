@@ -32,7 +32,7 @@ struct EditorView: View {
                 SampleEditor(sample: sample as? FieldworkSample,
                              framesPerPixel: $framesPerPixel,
                              caretPosition: $caretPosition,
-                            selection: $selection)
+                             selection: $selection)
             }
         }
         .toolbar {
