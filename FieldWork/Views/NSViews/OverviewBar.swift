@@ -12,6 +12,8 @@ import SwiftUI
 struct OverviewBarRepresentable : NSViewRepresentable {
     typealias NSViewType = OverviewBar
     
+    @Binding var selection: Selection
+    
     var sample: ISample?
     
     func makeNSView(context: Context) -> OverviewBar {
@@ -20,12 +22,21 @@ struct OverviewBarRepresentable : NSViewRepresentable {
     
     func updateNSView(_ nsView: OverviewBar, context: Context) {
         nsView.sample = sample
+        nsView.setSelection(newSelection: selection)
     }
 }
 
 class OverviewBar : NSView {
     var cachedImage: NSImage?
- 
+    
+    var selection = Selection.zero
+    func setSelection(newSelection: Selection) {
+        if selection != newSelection {
+            selection = newSelection
+            needsDisplay = true
+        }
+    }
+    
     var sampleLoadedObserver: NSObjectProtocol?
     var sample: ISample? {
         didSet {
@@ -111,11 +122,28 @@ class OverviewBar : NSView {
         rmsPath.stroke()
     }
 
+    func convertFrameToPoint(_ frame: UInt64, framesPerPixel: UInt64) -> NSPoint {
+        let scaledPoint = NSPoint(x: Double(frame / UInt64(framesPerPixel)), y: 0.0)
+        return convertFromBacking(scaledPoint)
+    }
+    
     override func draw(_ dirtyRect: NSRect) {
-        if cachedImage == nil {
-            generateCache()
+        if let sample = sample {
+            if cachedImage == nil {
+                generateCache()
+            }
+            
+            if !selection.isEmpty {
+                let fpp = sample.numberOfFrames / UInt64 (frame.width)
+                let x1 = convertFrameToPoint(selection.selectedRange.lowerBound, framesPerPixel: fpp)
+                let x2 = convertFrameToPoint(selection.selectedRange.upperBound, framesPerPixel: fpp)
+                
+                let selectionRect = NSRect(x: x1.x, y: 0, width: x2.x - x1.x, height: frame.height)
+                NSColor.selectedContentBackgroundColor.setFill()
+                NSBezierPath.fill(selectionRect)
+            }
+            
+            cachedImage?.draw(in: frame)
         }
-
-        cachedImage?.draw(in: frame)
     }
 }

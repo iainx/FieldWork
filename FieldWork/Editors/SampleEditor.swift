@@ -25,7 +25,8 @@ struct SampleEditor: View {
                     ZStack {
                         if viewModel.operation == nil {
                             VStack (spacing: 1){
-                                OverviewBarRepresentable(sample: sample)
+                                OverviewBarRepresentable(selection: $selection,
+                                                         sample: sample)
                                 ScrollView(.horizontal) {
                                     SampleViewControllerRepresentable(framesPerPixel: $framesPerPixel,
                                                                       caretPosition: $caretPosition,
