@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct FileCommands: Commands {
-    var recordingService: RecordingService
+    var fileService: FileService
     
     var body: some Commands {
         CommandGroup(before: .newItem) {
             ImportCommand()
+                .environmentObject(fileService)
         }
     }
 }

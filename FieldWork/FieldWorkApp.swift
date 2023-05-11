@@ -42,7 +42,7 @@ struct FieldWorkApp: App {
         }
         .commands {
             SidebarCommands()
-            FileCommands(recordingService: recordingService)
+            FileCommands(fileService: fileService)
             ViewCommands(model: model)
         }
         .onChange(of: scenePhase) { _ in
