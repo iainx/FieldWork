@@ -7,12 +7,31 @@
 
 import Foundation
 
-struct RecordingMetadata {
+struct RecordingMetadata: Hashable, Identifiable {
+    let id: UUID = UUID()
+    
     var name: String
-    var filepath: URL
+    var fileUrl: URL
     var createdDate: Date
     var frameCount: UInt64
     var channelCount: UInt8
     var bitdepth: UInt8
     var samplerate: UInt32
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(fileUrl)
+    }
+
+    static func == (lhs: RecordingMetadata, rhs: RecordingMetadata) -> Bool {
+        return lhs.id == rhs.id && lhs.fileUrl == rhs.fileUrl
+    }
+    
+    static let unknown = RecordingMetadata(name: "<unknown>",
+                                           fileUrl: URL(fileURLWithPath: "/"),
+                                           createdDate: Date.distantPast,
+                                           frameCount: 0,
+                                           channelCount: 0,
+                                           bitdepth: 0,
+                                           samplerate: 0)
 }

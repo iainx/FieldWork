@@ -14,24 +14,31 @@ struct ContentView: View {
     @Binding var framesPerPixel: UInt64
     @Binding var caretPosition: UInt64
     @Binding var selection: Selection
-    @Binding var currentRecording: Recording?
-    var recordings: [Recording]
+    @Binding var currentRecording: RecordingMetadata?
+    
+    @Binding var currentCollection: String?
+    @Binding var showCollectionView: Bool
+    
+//    var recordings: [RecordingMetadata]
     
     var body: some View {
         NavigationView{
-            SidebarView(recordings: recordings,
-                        selectedRecording: $currentRecording)
-            EditorView(framesPerPixel: $framesPerPixel,
-                       caretPosition: $caretPosition,
-                       selection: $selection,
-                       sample: sampleForRecording(recording: currentRecording),
-                       currentName: currentRecording?.name)
+            SidebarView(selectedCollection: $currentCollection)
+            if showCollectionView {
+                RecordingCollectionView(currentCollection: currentCollection)
+            } else {
+                EditorView(framesPerPixel: $framesPerPixel,
+                           caretPosition: $caretPosition,
+                           selection: $selection,
+                           sample: sampleForRecording(recording: currentRecording),
+                           currentName: currentRecording?.name)
+            }
         }
     }
 }
 
 extension ContentView {
-    func sampleForRecording(recording: Recording?) -> ISample? {
+    func sampleForRecording(recording: RecordingMetadata?) -> ISample? {
         guard let r = recording else {
             return nil
         }
@@ -48,16 +55,21 @@ extension ContentView {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static let persistenceController = PreviewPersistenceController()
-    static let recordingService: RecordingService = RecordingService(managedObjectContext: persistenceController.mainContext, persistenceController: persistenceController)
+    static let previewController = PreviewPersistenceController()
+    static let recordingService = RecordingService()
+    static let collectionService = CollectionService()
+    static let fileService = FileService(recordingService: recordingService,
+                                         collectionService: collectionService)
     
     static var previews: some View {
         ContentView(framesPerPixel: .constant(256),
                     caretPosition: .constant(0),
                     selection: .constant(Selection()),
                     currentRecording: .constant(nil),
-                    recordings: recordingService.getRecordings())
-            .environment(\.managedObjectContext, persistenceController.mainContext)
+                    currentCollection: .constant(nil),
+                    showCollectionView: .constant(true))
             .environmentObject(recordingService)
+            .environmentObject(fileService)
+            .environment(\.managedObjectContext, previewController.mainContext)
     }
 }

@@ -91,10 +91,9 @@ extension SampleEditor {
 }
 
 struct SampleEditor_Previews: PreviewProvider {
-    static let persistenceController = PreviewPersistenceController()
-    static let recordingService = RecordingService(managedObjectContext: persistenceController.mainContext,
-                                                   persistenceController: persistenceController)
-    static let fileService = FileService(recordingService: recordingService)
+    static let recordingService = RecordingService()
+    static let collectionService = CollectionService()
+    static let fileService = FileService(recordingService: recordingService, collectionService: collectionService)
     
     static var previews: some View {
         Group {

@@ -90,39 +90,3 @@ open class PersistenceController {
         }
     }
 }
-
-extension PersistenceController {
-    static var tagsSortDescriptor: [NSSortDescriptor] {
-        [NSSortDescriptor(keyPath: \Tag.name, ascending: true)]
-    }
-    
-    static var projectsSortDescriptor: [NSSortDescriptor] {
-        [NSSortDescriptor(keyPath:\Project.name, ascending: true)]
-    }
-    
-    static var recordingsSortDescriptor: [NSSortDescriptor] {
-        [NSSortDescriptor(keyPath:\Recording.name, ascending: true)]
-    }
-    
-    static var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
-    
-    static func importAudio() {
-    }
-    
-    static func recordingDatesFrom(results: FetchedResults<Recording>) -> [[Recording]] {
-        return Dictionary(grouping: results) { recording in
-            dateFormatter.string(from: recording.date!)
-        }.values.sorted() {
-            $0[0].date! < $1[0].date!
-        }
-    }
-    
-    func addRecordingMetadata(metadata: RecordingMetadata) {
-        let recording = Recording(context: mainContext)
-        recording.name = metadata.name
-    }
-}

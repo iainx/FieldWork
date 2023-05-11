@@ -7,48 +7,16 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
-class FieldWorkViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
-    @Published var recordings: [Recording] = []
-    @Published var selectedRecording: Recording?
+class FieldWorkViewModel : NSObject, ObservableObject {
+    @Published var recordings: [RecordingMetadata] = []
+    @Published var selectedCollection: String?
+    @Published var selectedRecording: RecordingMetadata?
     @Published var framesPerPixel: UInt64 = 256
     @Published var caretPosition: UInt64 = 0
     @Published var selection: Selection = Selection()
-    
-    var controller: NSFetchedResultsController<Recording>?
-    
-    override init()
-    {
-        selectedRecording = nil
-        controller = nil
-        super.init()
-    }
-    
-    func loadData(recordingService: RecordingService) {
-        let context = recordingService.managedObjectContext
-        let fetchRequest = Recording.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date",
-                                                         ascending: true)]
-        controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                managedObjectContext: context,
-                                                sectionNameKeyPath: nil,
-                                                cacheName: nil)
-        
-        controller!.delegate = self
-        
-        do {
-            try controller!.performFetch()
-        } catch {
-            fatalError("Failed to fetch entities: \(error)")
-        }
-        
-        recordings = controller!.fetchedObjects ?? []
-    }
-    
-    func controllerDidChangeContent(_ c: NSFetchedResultsController<NSFetchRequestResult>) {
-    
-        recordings = controller!.fetchedObjects ?? []
-    }
+    @Published var showCollectionView: Bool = true
     
     func zoomIn() {
         if (framesPerPixel == 1) {

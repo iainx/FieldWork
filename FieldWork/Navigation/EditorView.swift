@@ -42,8 +42,7 @@ struct EditorView: View {
 }
 
 struct EditorView_Previews: PreviewProvider {
-    static let persistenceController = PreviewPersistenceController()
-    static let recordingService: RecordingService = RecordingService(managedObjectContext: persistenceController.mainContext, persistenceController: persistenceController)
+    static let recordingService: RecordingService = RecordingService()
     
     static var previews: some View {
         Group {

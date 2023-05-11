@@ -15,9 +15,11 @@ protocol IFileService {
 
 class FileService : ObservableObject, IFileService {
     let recordingService: RecordingService
+    let collectionService: CollectionService
     
-    init(recordingService: RecordingService) {
+    init(recordingService: RecordingService, collectionService: CollectionService) {
         self.recordingService = recordingService
+        self.collectionService = collectionService
     }
     
     func getImportFolders() -> [URL]? {
@@ -74,13 +76,14 @@ class FileService : ObservableObject, IFileService {
             try metadataLoader.open(url: url)
             let metadata = try metadataLoader.loadMetadata()
             let rm = RecordingMetadata(name: url.lastPathComponent,
-                                       filepath: url, createdDate: Date.now,
+                                       fileUrl: url, createdDate: Date.now,
                                        frameCount: metadata.numberOfFrames,
                                        channelCount: UInt8(metadata.numberOfChannels),
                                        bitdepth: UInt8(metadata.bitrate),
                                        samplerate: UInt32(metadata.sampleRate))
             
-            recordingService.addRecording(metaData: rm)
+            let document = recordingService.addRecording(metadata: rm)
+            _ = collectionService.addRecordingId(document.id)
         } catch {
             print("Error getting metadata for \(url): \(error)")
         }

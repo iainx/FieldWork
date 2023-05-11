@@ -11,18 +11,17 @@ import SwiftUI
 struct FieldWorkApp: App {
     @Environment(\.scenePhase) var scenePhase
     
-    let persistenceController = PersistenceController()
-    let recordingService: RecordingService
+    let recordingService: RecordingService = RecordingService()
+    let collectionService = CollectionService()
+    
     let fileService: FileService
     
     @StateObject var model = FieldWorkViewModel()
     
     init() {
-        recordingService = RecordingService(managedObjectContext: persistenceController.mainContext,
-                                            persistenceController: persistenceController)
         recordingService.sampleFactory = DefaultSampleFactory()
         
-        fileService = FileService(recordingService: recordingService)
+        fileService = FileService(recordingService: recordingService, collectionService: collectionService)
     }
     
     var body: some Scene {
@@ -31,22 +30,19 @@ struct FieldWorkApp: App {
                         caretPosition: $model.caretPosition,
                         selection: $model.selection,
                         currentRecording: $model.selectedRecording,
-                        recordings: model.recordings)
-                .environment(\.managedObjectContext, persistenceController.mainContext)
+                        currentCollection: $model.selectedCollection,
+                        showCollectionView: $model.showCollectionView)
                 .environmentObject(recordingService)
+                .environmentObject(collectionService)
                 .environmentObject(fileService)
                 .environmentObject(model)
-                .onAppear() {
-                    model.loadData(recordingService: recordingService)
-                }
+                .environment(\.managedObjectContext, collectionService.persistenceController.mainContext)
         }
         .commands {
             SidebarCommands()
             FileCommands(fileService: fileService)
             ViewCommands(model: model)
-        }
-        .onChange(of: scenePhase) { _ in
-            persistenceController.saveContext()
+            DeveloperCommands(recordingService: recordingService, collectionService: collectionService)
         }
     }
 }

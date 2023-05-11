@@ -56,9 +56,15 @@
 		AEABD04628C3303600711193 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABD04528C3303600711193 /* ProgressView.swift */; };
 		AEACA2B928C938BE00E19AE4 /* ISampleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACA2B828C938BE00E19AE4 /* ISampleLoader.swift */; };
 		AEAF7D4A28DA65E300E76868 /* FieldworkLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAF7D4928DA65E300E76868 /* FieldworkLoadOperation.swift */; };
+		AEB4E85129FF0E1E0008ECD2 /* ResetCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4E85029FF0E1E0008ECD2 /* ResetCommand.swift */; };
+		AEB4E85329FF10C90008ECD2 /* DeveloperCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4E85229FF10C90008ECD2 /* DeveloperCommands.swift */; };
+		AEB4E8572A07020F0008ECD2 /* RecordingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4E8562A07020F0008ECD2 /* RecordingCollectionView.swift */; };
+		AEB4E85A2A0997230008ECD2 /* RecordingCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4E8592A0997230008ECD2 /* RecordingCollectionViewItem.swift */; };
 		AEDA2DD029A6C1950087A7CE /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA2DCF29A6C1950087A7CE /* ViewCommands.swift */; };
 		AEDA2DD229A6C25D0087A7CE /* ZoomCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA2DD129A6C25D0087A7CE /* ZoomCommands.swift */; };
 		AEDE43C52887EC5800A16F66 /* FieldWorkModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AEDE43C32887EC5800A16F66 /* FieldWorkModel.xcdatamodeld */; };
+		AEE1CCF729F5DCD2006B3857 /* CouchbaseLiteSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AEE1CCF629F5DCD2006B3857 /* CouchbaseLiteSwift */; };
+		AEE1CCF929FC747F006B3857 /* CollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE1CCF829FC747F006B3857 /* CollectionService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,9 +153,14 @@
 		AEABD04528C3303600711193 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		AEACA2B828C938BE00E19AE4 /* ISampleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISampleLoader.swift; sourceTree = "<group>"; };
 		AEAF7D4928DA65E300E76868 /* FieldworkLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldworkLoadOperation.swift; sourceTree = "<group>"; };
+		AEB4E85029FF0E1E0008ECD2 /* ResetCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCommand.swift; sourceTree = "<group>"; };
+		AEB4E85229FF10C90008ECD2 /* DeveloperCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperCommands.swift; sourceTree = "<group>"; };
+		AEB4E8562A07020F0008ECD2 /* RecordingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCollectionView.swift; sourceTree = "<group>"; };
+		AEB4E8592A0997230008ECD2 /* RecordingCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCollectionViewItem.swift; sourceTree = "<group>"; };
 		AEDA2DCF29A6C1950087A7CE /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
 		AEDA2DD129A6C25D0087A7CE /* ZoomCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomCommands.swift; sourceTree = "<group>"; };
 		AEDE43C42887EC5800A16F66 /* FieldWorkModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldWorkModel.xcdatamodel; sourceTree = "<group>"; };
+		AEE1CCF829FC747F006B3857 /* CollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE1CCF729F5DCD2006B3857 /* CouchbaseLiteSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +212,7 @@
 		AE0335D02883403C00C22F7D /* FieldWork */ = {
 			isa = PBXGroup;
 			children = (
+				AEB4E8582A0996AD0008ECD2 /* CollectionView */,
 				AEABD04228C1FCD100711193 /* Fieldwork */,
 				AEA9C99828A54DEB00A17F8A /* Services */,
 				AE1B8968289F0B7500FB8BF8 /* Extensions */,
@@ -269,6 +282,8 @@
 				AE6DD6F1289AF9DE00EF3B4A /* ImportCommand.swift */,
 				AEDA2DCF29A6C1950087A7CE /* ViewCommands.swift */,
 				AEDA2DD129A6C25D0087A7CE /* ZoomCommands.swift */,
+				AEB4E85029FF0E1E0008ECD2 /* ResetCommand.swift */,
+				AEB4E85229FF10C90008ECD2 /* DeveloperCommands.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -356,6 +371,7 @@
 			children = (
 				AE90B3322897334800EE6F72 /* RecordingService.swift */,
 				AEA9C99928A54DFF00A17F8A /* FileService.swift */,
+				AEE1CCF829FC747F006B3857 /* CollectionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -382,6 +398,15 @@
 			path = Fieldwork;
 			sourceTree = "<group>";
 		};
+		AEB4E8582A0996AD0008ECD2 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				AEB4E8562A07020F0008ECD2 /* RecordingCollectionView.swift */,
+				AEB4E8592A0997230008ECD2 /* RecordingCollectionViewItem.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -398,6 +423,9 @@
 			dependencies = (
 			);
 			name = FieldWork;
+			packageProductDependencies = (
+				AEE1CCF629F5DCD2006B3857 /* CouchbaseLiteSwift */,
+			);
 			productName = FieldWork;
 			productReference = AE0335CE2883403C00C22F7D /* FieldWork.app */;
 			productType = "com.apple.product-type.application";
@@ -471,6 +499,9 @@
 				Base,
 			);
 			mainGroup = AE0335C52883403C00C22F7D;
+			packageReferences = (
+				AEE1CCF529F5DCD2006B3857 /* XCRemoteSwiftPackageReference "couchbase-lite-swift-ee" */,
+			);
 			productRefGroup = AE0335CF2883403C00C22F7D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -517,6 +548,7 @@
 				AEA9C99A28A54DFF00A17F8A /* FileService.swift in Sources */,
 				AE1B896A289F0B8E00FB8BF8 /* BindingExtensions.swift in Sources */,
 				AEABD03B28BD597F00711193 /* FieldworkOperation.swift in Sources */,
+				AEE1CCF929FC747F006B3857 /* CollectionService.swift in Sources */,
 				AEAF7D4A28DA65E300E76868 /* FieldworkLoadOperation.swift in Sources */,
 				AE6DD6F0289AF9A700EF3B4A /* FileCommands.swift in Sources */,
 				AE0336012884459C00C22F7D /* SampleEditor.swift in Sources */,
@@ -528,6 +560,7 @@
 				AE6DD708289D094900EF3B4A /* MLNSampleBlock.m in Sources */,
 				AEABD03928BD52A800711193 /* FieldworkSample.swift in Sources */,
 				AE1B896C289FB8DE00FB8BF8 /* FieldWorkViewModel.swift in Sources */,
+				AEB4E8572A07020F0008ECD2 /* RecordingCollectionView.swift in Sources */,
 				AE6DD72E289D0B3900EF3B4A /* MLNCacheFile.m in Sources */,
 				AEABD04028BEAC0600711193 /* CoreaudioSampleLoader.m in Sources */,
 				AEABD04628C3303600711193 /* ProgressView.swift in Sources */,
@@ -536,6 +569,7 @@
 				AE90B3332897334800EE6F72 /* RecordingService.swift in Sources */,
 				AEABCFF828A99BFE00711193 /* CaretView.swift in Sources */,
 				AE764DC52885F9FF0060E6CC /* EditorModePicker.swift in Sources */,
+				AEB4E85329FF10C90008ECD2 /* DeveloperCommands.swift in Sources */,
 				AE839FCE28988331005F579C /* PreviewPersistenceController.swift in Sources */,
 				AE0335D42883403C00C22F7D /* ContentView.swift in Sources */,
 				AE6DD706289D094900EF3B4A /* MLNSampleBlockList.m in Sources */,
@@ -543,6 +577,7 @@
 				AE90B32F28971E2500EE6F72 /* PersistenceController.swift in Sources */,
 				AEACA2B928C938BE00E19AE4 /* ISampleLoader.swift in Sources */,
 				AEDA2DD229A6C25D0087A7CE /* ZoomCommands.swift in Sources */,
+				AEB4E85129FF0E1E0008ECD2 /* ResetCommand.swift in Sources */,
 				AE6DD735289D0D7F00EF3B4A /* MLNSampleBlockSilence.m in Sources */,
 				AE6DD6F2289AF9DE00EF3B4A /* ImportCommand.swift in Sources */,
 				AE6DD732289D0B7900EF3B4A /* utils.m in Sources */,
@@ -552,6 +587,7 @@
 				AEABD03728BC0BE600711193 /* SampleDrawingHelper.swift in Sources */,
 				AEABD03528B76E3800711193 /* OverviewBar.swift in Sources */,
 				AE6DD70B289D094900EF3B4A /* MLNSampleBlockFile.m in Sources */,
+				AEB4E85A2A0997230008ECD2 /* RecordingCollectionViewItem.swift in Sources */,
 				AE0335D22883403C00C22F7D /* FieldWorkApp.swift in Sources */,
 				AE1B8967289EFBB800FB8BF8 /* SampleView.swift in Sources */,
 				AE0335FD288444FA00C22F7D /* SidebarView.swift in Sources */,
@@ -647,7 +683,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -702,7 +738,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -902,6 +938,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AEE1CCF529F5DCD2006B3857 /* XCRemoteSwiftPackageReference "couchbase-lite-swift-ee" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/couchbase/couchbase-lite-swift-ee.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AEE1CCF629F5DCD2006B3857 /* CouchbaseLiteSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AEE1CCF529F5DCD2006B3857 /* XCRemoteSwiftPackageReference "couchbase-lite-swift-ee" */;
+			productName = CouchbaseLiteSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		AEDE43C32887EC5800A16F66 /* FieldWorkModel.xcdatamodeld */ = {

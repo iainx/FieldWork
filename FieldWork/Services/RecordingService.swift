@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreData
+import CouchbaseLiteSwift
 
 protocol ISampleFactory {
     func createSample() -> ISample
@@ -23,107 +23,103 @@ enum RecordingServiceErrors : Error {
 }
 
 public final class RecordingService: ObservableObject {
-    let managedObjectContext: NSManagedObjectContext
-    let persistenceController: PersistenceController
-    var sampleCache = Dictionary<Recording, ISample>()
+    let recordingDatabase: Database
+    let bookmarkDatabase: Database
+    var sampleCache = Dictionary<RecordingMetadata, ISample>()
     
     var sampleFactory: ISampleFactory?
     
     // MARK: - Initializers
-    public init(managedObjectContext: NSManagedObjectContext, persistenceController: PersistenceController) {
-        self.managedObjectContext = managedObjectContext
-        self.persistenceController = persistenceController
+    public init() {
+        do {
+            recordingDatabase = try Database(name: "FieldWork")
+            bookmarkDatabase = try Database(name: "FieldWorkBookmarks")
+            
+            print("Number of documents: \(recordingDatabase.count)")            
+        } catch {
+            fatalError("Error opening database")
+        }
+    }
+    
+    func deleteEverything() throws {
+        try recordingDatabase.delete()
+        try bookmarkDatabase.delete()
     }
 }
 
 extension RecordingService {
     @discardableResult
-    func addRecording(metaData: RecordingMetadata) -> Recording {
-        let recording = Recording(context: managedObjectContext)
-        recording.name = metaData.name
-        recording.filename = metaData.filepath
-        recording.id = UUID().uuidString
-        recording.date = metaData.createdDate
-        recording.framecount = Int64(metaData.frameCount)
-        recording.duration = Int64(metaData.frameCount / UInt64(metaData.samplerate))
-        recording.channels = Int16(metaData.channelCount)
-        recording.bitdepth = Int16(metaData.bitdepth)
+    func addRecording(metadata: RecordingMetadata) -> Document {
+        let document = MutableDocument(id: nil)
+        document.setString(metadata.name, forKey: "name")
+        document.setString(metadata.fileUrl.absoluteString, forKey: "filepath")
+        document.setDate(metadata.createdDate, forKey: "createdDate")
+
+        do {
+            try recordingDatabase.saveDocument(document)
+        } catch {
+            print("Error saving document")
+        }
         
-        persistenceController.saveContext(managedObjectContext)
-        return recording
+        print ("Created document \(document.id) - \(metadata.name)")
+        return document
     }
     
-    func getRecordingFor(id: String) -> Recording? {
-        let idPredicate = NSPredicate(format: "id == %@", argumentArray: [id])
-        let recordingFetch: NSFetchRequest<Recording> = Recording.fetchRequest()
-        recordingFetch.predicate = idPredicate
-        
-        do {
-            let results = try managedObjectContext.fetch(recordingFetch)
-            if results.count == 0 {
-                print("Unknown id")
-                return nil
-            }
-            return results[0]
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
+    func getRecordingFor(id: String) -> RecordingMetadata? {
+        guard let document = recordingDatabase.document(withID: id) else {
             return nil
         }
+        
+        let filepath = document.string(forKey: "filepath")
+        let name = document.string(forKey: "name") ?? "<Unknown>"
+        let date = document.date(forKey: "createdDate") ?? Date.distantPast
+        
+        if filepath == nil {
+            return nil
+        }
+
+        guard let url = URL(string: filepath!) else {
+            return nil
+        }
+        
+        return RecordingMetadata(name:name, fileUrl: url, createdDate: date, frameCount: 0, channelCount: 0, bitdepth: 24, samplerate: 44100)
     }
     
-    func getRecordings() -> [Recording] {
-        let recordingFetch: NSFetchRequest<Recording> = Recording.fetchRequest()
-        do {
-            let results = try managedObjectContext.fetch(recordingFetch)
-            return results
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
-        }
+    func getRecordings() -> [RecordingMetadata] {
         return []
     }
     
     func getSecurityBookmarkFor(url: URL) -> Data? {
-        print("Get sB for \(url)")
-        let urlPredicate = NSPredicate(format: "url == %@", argumentArray: [url])
-        let securityFetch: NSFetchRequest<SecurityBookmark> = SecurityBookmark.fetchRequest()
-        securityFetch.predicate = urlPredicate
-        
-        var result: [SecurityBookmark]
-        do {
-            result = try managedObjectContext.fetch(securityFetch)
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
-            return nil
-        }
-        
-        if (result.count == 0) {
-            print("No bookmarks")
+        guard let bookmarkDocument = bookmarkDatabase.document(withID: url.absoluteString) else {
             return createSecurityBookmarkFor(url: url)
         }
         
-        return result[0].bookmark
+        guard let bookmark = bookmarkDocument.string(forKey: "bookmarkData") else {
+            return createSecurityBookmarkFor(url: url)
+        }
+        
+        return Data(base64Encoded: bookmark.data(using: .utf8)!)
     }
     
     func createSecurityBookmarkFor(url: URL) -> Data? {
         print("Create bookmark for \(url)")
-        var bookmarkData: Data
         do {
-            bookmarkData = try url.bookmarkData(options: .securityScopeAllowOnlyReadAccess, includingResourceValuesForKeys: nil, relativeTo: nil)
+            let bookmarkData = try url.bookmarkData(options: .securityScopeAllowOnlyReadAccess, includingResourceValuesForKeys: nil, relativeTo: nil)
+            
+            let b64Bookmark = bookmarkData.base64EncodedString()
+            let document = MutableDocument(id: url.absoluteString)
+            document.setString(b64Bookmark, forKey: "bookmarkData")
+            
+            try bookmarkDatabase.saveDocument(document)
+            return b64Bookmark.data(using: .utf8)
+            
         } catch let error as NSError {
             print("Error creating bookmark: \(error) description: \(error.userInfo)")
             return nil
         }
-
-        let bookmark = SecurityBookmark(context:managedObjectContext)
-        bookmark.url = url
-        bookmark.bookmark = bookmarkData
-        
-        persistenceController.saveContext(managedObjectContext)
-        
-        return bookmarkData
     }
 
-    func sampleFor(recording: Recording) throws -> ISample {
+    func sampleFor(recording: RecordingMetadata) throws -> ISample {
         if let sample = sampleCache[recording] {
             return sample
         }
@@ -135,7 +131,7 @@ extension RecordingService {
         let sample = sampleFactory.createSample()
         sampleCache[recording] = sample
         
-        sample.url = recording.filename
+        sample.url = recording.fileUrl
         return sample
     }
 }
