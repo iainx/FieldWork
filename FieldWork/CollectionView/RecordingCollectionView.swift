@@ -11,6 +11,8 @@ struct RecordingCollectionView: View {
     @EnvironmentObject var recordingService: RecordingService
     @FetchRequest(sortDescriptors: []) var collectionItems: FetchedResults<Recording>
     
+    @Binding var currentRecording: String
+    
     var currentCollection: String? {
         didSet {
             if currentCollection == nil {
@@ -22,9 +24,15 @@ struct RecordingCollectionView: View {
     }
     
     var body: some View {
-        List {
-            ForEach(collectionItems, id: \.id) { item in
-                RecordingCollectionViewItem(metadata: recordingFrom(id: item.id))
+        let column = GridItem(.adaptive(minimum: 150))
+        ScrollView {
+            LazyVGrid (columns: [column]){
+                ForEach(collectionItems, id: \.id) { item in
+                    RecordingCollectionViewItem(metadata: recordingFrom(id: item.id))
+                        .onTapGesture {
+                            showRecording(id: item.id!)
+                        }
+                }
             }
         }
     }
@@ -41,5 +49,9 @@ extension RecordingCollectionView {
         }
         
         return RecordingMetadata.unknown
+    }
+    
+    func showRecording(id: String) {
+        
     }
 }

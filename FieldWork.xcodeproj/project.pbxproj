@@ -40,6 +40,7 @@
 		AE780FF029E363AE00E490F7 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE780FEF29E363AE00E490F7 /* Selection.swift */; };
 		AE79DED428DD038A009DA7A8 /* SampleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE79DED328DD0389009DA7A8 /* SampleMetadata.swift */; };
 		AE839FCE28988331005F579C /* PreviewPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE839FCD28988331005F579C /* PreviewPersistenceController.swift */; };
+		AE8C625A2A0D90C80077DAFD /* RecordingCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8C62592A0D90C80077DAFD /* RecordingCapsule.swift */; };
 		AE90B32D28971BBE00EE6F72 /* RecordingMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B32C28971BBE00EE6F72 /* RecordingMetadata.swift */; };
 		AE90B32F28971E2500EE6F72 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B32E28971E2500EE6F72 /* PersistenceController.swift */; };
 		AE90B3312897224100EE6F72 /* TestablePersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B3302897224100EE6F72 /* TestablePersistenceController.swift */; };
@@ -136,6 +137,7 @@
 		AE780FEF29E363AE00E490F7 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		AE79DED328DD0389009DA7A8 /* SampleMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMetadata.swift; sourceTree = "<group>"; };
 		AE839FCD28988331005F579C /* PreviewPersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPersistenceController.swift; sourceTree = "<group>"; };
+		AE8C62592A0D90C80077DAFD /* RecordingCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCapsule.swift; sourceTree = "<group>"; };
 		AE90B32C28971BBE00EE6F72 /* RecordingMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingMetadata.swift; sourceTree = "<group>"; };
 		AE90B32E28971E2500EE6F72 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		AE90B3302897224100EE6F72 /* TestablePersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestablePersistenceController.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 			children = (
 				AEB4E8562A07020F0008ECD2 /* RecordingCollectionView.swift */,
 				AEB4E8592A0997230008ECD2 /* RecordingCollectionViewItem.swift */,
+				AE8C62592A0D90C80077DAFD /* RecordingCapsule.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				AE764DC52885F9FF0060E6CC /* EditorModePicker.swift in Sources */,
 				AEB4E85329FF10C90008ECD2 /* DeveloperCommands.swift in Sources */,
 				AE839FCE28988331005F579C /* PreviewPersistenceController.swift in Sources */,
+				AE8C625A2A0D90C80077DAFD /* RecordingCapsule.swift in Sources */,
 				AE0335D42883403C00C22F7D /* ContentView.swift in Sources */,
 				AE6DD706289D094900EF3B4A /* MLNSampleBlockList.m in Sources */,
 				AE6DD72A289D0B3900EF3B4A /* MLNMMapRegion.m in Sources */,
