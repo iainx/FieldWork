@@ -46,6 +46,7 @@
 		AE90B3312897224100EE6F72 /* TestablePersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B3302897224100EE6F72 /* TestablePersistenceController.swift */; };
 		AE90B3332897334800EE6F72 /* RecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B3322897334800EE6F72 /* RecordingService.swift */; };
 		AE90B335289737DD00EE6F72 /* RecordingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B334289737DD00EE6F72 /* RecordingServiceTests.swift */; };
+		AEA6E95D2A1264C000C00805 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = AEA6E95C2A1264C000C00805 /* ComposableArchitecture */; };
 		AEA9C99A28A54DFF00A17F8A /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA9C99928A54DFF00A17F8A /* FileService.swift */; };
 		AEABCFF828A99BFE00711193 /* CaretView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABCFF728A99BFE00711193 /* CaretView.swift */; };
 		AEABCFFA28AB9C4500711193 /* Caret.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABCFF928AB9C4500711193 /* Caret.swift */; };
@@ -170,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEA6E95D2A1264C000C00805 /* ComposableArchitecture in Frameworks */,
 				AEE1CCF729F5DCD2006B3857 /* CouchbaseLiteSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +430,7 @@
 			name = FieldWork;
 			packageProductDependencies = (
 				AEE1CCF629F5DCD2006B3857 /* CouchbaseLiteSwift */,
+				AEA6E95C2A1264C000C00805 /* ComposableArchitecture */,
 			);
 			productName = FieldWork;
 			productReference = AE0335CE2883403C00C22F7D /* FieldWork.app */;
@@ -504,6 +507,7 @@
 			mainGroup = AE0335C52883403C00C22F7D;
 			packageReferences = (
 				AEE1CCF529F5DCD2006B3857 /* XCRemoteSwiftPackageReference "couchbase-lite-swift-ee" */,
+				AEA6E95B2A1264C000C00805 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = AE0335CF2883403C00C22F7D /* Products */;
 			projectDirPath = "";
@@ -944,6 +948,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AEA6E95B2A1264C000C00805 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.53.0;
+			};
+		};
 		AEE1CCF529F5DCD2006B3857 /* XCRemoteSwiftPackageReference "couchbase-lite-swift-ee" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/couchbase/couchbase-lite-swift-ee.git";
@@ -955,6 +967,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AEA6E95C2A1264C000C00805 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AEA6E95B2A1264C000C00805 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		AEE1CCF629F5DCD2006B3857 /* CouchbaseLiteSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AEE1CCF529F5DCD2006B3857 /* XCRemoteSwiftPackageReference "couchbase-lite-swift-ee" */;
