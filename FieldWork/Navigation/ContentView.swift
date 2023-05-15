@@ -25,7 +25,8 @@ struct ContentView: View {
         NavigationView{
             SidebarView(selectedCollection: $currentCollection)
             if showCollectionView {
-                RecordingCollectionView(currentCollection: currentCollection)
+                RecordingCollectionView(currentRecording: $currentRecording,
+                                        currentCollection: currentCollection)
             } else {
                 EditorView(framesPerPixel: $framesPerPixel,
                            caretPosition: $caretPosition,

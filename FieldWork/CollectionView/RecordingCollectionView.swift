@@ -11,7 +11,7 @@ struct RecordingCollectionView: View {
     @EnvironmentObject var recordingService: RecordingService
     @FetchRequest(sortDescriptors: []) var collectionItems: FetchedResults<Recording>
     
-    @Binding var currentRecording: String
+    @Binding var currentRecording: RecordingMetadata?
     
     var currentCollection: String? {
         didSet {
