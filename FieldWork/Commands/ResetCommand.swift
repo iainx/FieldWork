@@ -7,15 +7,17 @@
 
 import SwiftUI
 
+import Dependencies
+
 struct ResetCommand: View {
-    @EnvironmentObject var recordingSerview: RecordingService
-    @EnvironmentObject var collectionService: CollectionService
+    @Dependency(\.recordingService) var recordingService
+    @Dependency(\.collectionService) var collectionService
     
     var body: some View {
         Button {
             do {
                 try collectionService.deleteEverything()
-                try recordingSerview.deleteEverything()
+                try recordingService.deleteEverything()
             } catch {
                 print ("Error deleting data")
             }

@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+import Dependencies
+
 struct ImportCommand: View {
-    @EnvironmentObject var fileService: FileService
+    @Dependency(\.fileService) var fileService
     
     var body: some View {
         Button {

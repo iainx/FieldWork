@@ -7,23 +7,16 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+import Dependencies
+
 @main
 struct FieldWorkApp: App {
     @Environment(\.scenePhase) var scenePhase
-    
-    let recordingService: RecordingService = RecordingService()
-    let collectionService = CollectionService()
-    
-    let fileService: FileService
+    @Dependency(\.collectionService) var collectionService
     
     @StateObject var model = FieldWorkViewModel()
-    
-    init() {
-        recordingService.sampleFactory = DefaultSampleFactory()
         
-        fileService = FileService(recordingService: recordingService, collectionService: collectionService)
-    }
-    
     var body: some Scene {
         WindowGroup {
             ContentView(framesPerPixel: $model.framesPerPixel,
@@ -31,19 +24,18 @@ struct FieldWorkApp: App {
                         selection: $model.selection,
                         currentRecording: $model.selectedRecording,
                         currentCollection: $model.selectedCollection,
-                        showCollectionView: $model.showCollectionView)
-                .environmentObject(recordingService)
-                .environmentObject(collectionService)
-                .environmentObject(fileService)
-                .environmentObject(model)
-                .environment(\.managedObjectContext, collectionService.persistenceController.mainContext)
+                        showCollectionView: $model.showCollectionView,
+                        store: Store(initialState: .initial){
+                ContentFeature()
+            })
+            .environmentObject(model)
+            .environment(\.managedObjectContext, collectionService.persistenceController.mainContext)
         }
         .commands {
             SidebarCommands()
-            FileCommands(fileService: fileService)
+            FileCommands()
             ViewCommands(model: model)
-            DeveloperCommands(recordingService: recordingService, collectionService: collectionService)
+            DeveloperCommands()
         }
     }
 }
-

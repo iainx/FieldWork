@@ -42,8 +42,6 @@ struct EditorView: View {
 }
 
 struct EditorView_Previews: PreviewProvider {
-    static let recordingService: RecordingService = RecordingService()
-    
     static var previews: some View {
         Group {
             EditorView(framesPerPixel: .constant(256),
@@ -51,14 +49,12 @@ struct EditorView_Previews: PreviewProvider {
                        selection: .constant(Selection()),
                        sample: nil,
                        currentName: nil)
-                .environmentObject(recordingService)
                 .previewDisplayName("No Sample")
             EditorView(framesPerPixel: .constant(256),
                        caretPosition: .constant(0),
                        selection: .constant(Selection()),
                        sample: nil, // Make preview sample
                        currentName: "test")
-            .environmentObject(recordingService)
             .previewDisplayName("Sample")
         }
     }

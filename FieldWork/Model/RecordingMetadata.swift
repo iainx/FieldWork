@@ -34,4 +34,11 @@ struct RecordingMetadata: Hashable, Identifiable {
                                            channelCount: 0,
                                            bitdepth: 0,
                                            samplerate: 0)
+    static let preview = RecordingMetadata(name: "birdsong.mp3",
+                                           fileUrl: URL(fileURLWithPath: "/"),
+                                           createdDate: Date.now,
+                                           frameCount: 44100,
+                                           channelCount: 2,
+                                           bitdepth: 24,
+                                           samplerate: 44100)
 }

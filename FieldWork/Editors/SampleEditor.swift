@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+import Dependencies
+
 struct SampleEditor: View {
-    @EnvironmentObject var recordingService: RecordingService
-    @EnvironmentObject var fileService: FileService
+    @Dependency(\.recordingService) var recordingService
+    @Dependency(\.fileService) var fileService
     
     @StateObject var viewModel = SampleEditorViewModel()
     
@@ -91,10 +93,6 @@ extension SampleEditor {
 }
 
 struct SampleEditor_Previews: PreviewProvider {
-    static let recordingService = RecordingService()
-    static let collectionService = CollectionService()
-    static let fileService = FileService(recordingService: recordingService, collectionService: collectionService)
-    
     static var previews: some View {
         Group {
             SampleEditor(framesPerPixel: .constant(256),
@@ -122,7 +120,5 @@ struct SampleEditor_Previews: PreviewProvider {
                          selection: .constant(Selection(selectedRange: 0...250)))
                 .previewDisplayName("Selection")
         }
-        .environmentObject(recordingService)
-        .environmentObject(fileService)
     }
 }

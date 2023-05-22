@@ -8,10 +8,23 @@
 import CoreData
 import Foundation
 
-class CollectionService: ObservableObject {
-    let persistenceController = PersistenceController()
+import ComposableArchitecture
+
+class LiveCollectionService: CollectionService {
+    let realPersistenceController: PersistenceController
+    var persistenceController: PersistenceController {
+        get {
+            realPersistenceController
+        }
+    }
     
-    init() {
+    convenience init() {
+        self.init(persistenceController: PersistenceController())
+    }
+    
+    init(persistenceController: PersistenceController) {
+        self.realPersistenceController = persistenceController
+        
         let context = persistenceController.mainContext
         
         let count = try? context.count(for: NSFetchRequest(entityName: "Recording"))
@@ -35,6 +48,20 @@ class CollectionService: ObservableObject {
         print ("Added \(id)")
         persistenceController.saveContext()
         return true
+    }
+
+    func getRecordingsForCollection(_ name: String?) -> [Recording] {
+        let context = persistenceController.mainContext
+        let request = Recording.fetchRequest()
+        if let name = name {
+            request.predicate = NSPredicate(format: "NAME == %@ ", name)
+        }
+        do {
+            return try context.fetch<Recording>(request)
+        } catch let error as NSError {
+            print ("Error retrieving collection items for \(name ?? "<everything>"): \(error.description)")
+        }
+        return []
     }
 
     func recordingCount() -> Int {

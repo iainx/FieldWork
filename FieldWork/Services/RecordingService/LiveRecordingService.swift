@@ -7,6 +7,7 @@
 
 import Foundation
 import CouchbaseLiteSwift
+import Dependencies
 
 protocol ISampleFactory {
     func createSample() -> ISample
@@ -18,11 +19,7 @@ final class DefaultSampleFactory : ISampleFactory {
     }
 }
 
-enum RecordingServiceErrors : Error {
-    case noSampleFactory
-}
-
-public final class RecordingService: ObservableObject {
+public final class LiveRecordingService: ObservableObject, RecordingService {
     let recordingDatabase: Database
     let bookmarkDatabase: Database
     var sampleCache = Dictionary<RecordingMetadata, ISample>()
@@ -34,6 +31,7 @@ public final class RecordingService: ObservableObject {
         do {
             recordingDatabase = try Database(name: "FieldWork")
             bookmarkDatabase = try Database(name: "FieldWorkBookmarks")
+            sampleFactory = DefaultSampleFactory()
             
             print("Number of documents: \(recordingDatabase.count)")            
         } catch {
@@ -47,9 +45,9 @@ public final class RecordingService: ObservableObject {
     }
 }
 
-extension RecordingService {
+extension LiveRecordingService {
     @discardableResult
-    func addRecording(metadata: RecordingMetadata) -> Document {
+    func addRecording(metadata: RecordingMetadata) -> String {
         let document = MutableDocument(id: nil)
         document.setString(metadata.name, forKey: "name")
         document.setString(metadata.fileUrl.absoluteString, forKey: "filepath")
@@ -62,7 +60,7 @@ extension RecordingService {
         }
         
         print ("Created document \(document.id) - \(metadata.name)")
-        return document
+        return document.id
     }
     
     func getRecordingFor(id: String) -> RecordingMetadata? {
@@ -83,10 +81,6 @@ extension RecordingService {
         }
         
         return RecordingMetadata(name:name, fileUrl: url, createdDate: date, frameCount: 0, channelCount: 0, bitdepth: 24, samplerate: 44100)
-    }
-    
-    func getRecordings() -> [RecordingMetadata] {
-        return []
     }
     
     func getSecurityBookmarkFor(url: URL) -> Data? {

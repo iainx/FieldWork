@@ -8,21 +8,13 @@
 import Foundation
 import AppKit
 
-protocol IFileService {
-    func getAccessTo(url: URL) -> Bool
-    func endAccessOf(url: URL) -> Bool
-}
+import Dependencies
 
-class FileService : ObservableObject, IFileService {
-    let recordingService: RecordingService
-    let collectionService: CollectionService
+class LiveFileService : ObservableObject, FileService {
+    @Dependency(\.recordingService) var recordingService
+    @Dependency(\.collectionService) var collectionService
     
-    init(recordingService: RecordingService, collectionService: CollectionService) {
-        self.recordingService = recordingService
-        self.collectionService = collectionService
-    }
-    
-    func getImportFolders() -> [URL]? {
+    private func getImportFolders() -> [URL]? {
         let panel = NSOpenPanel()
         panel.canChooseDirectories = true
         panel.canChooseFiles = true
@@ -48,7 +40,7 @@ class FileService : ObservableObject, IFileService {
         }
     }
     
-    func importDirectory(url: URL) {
+    private func importDirectory(url: URL) {
         do {
             let directoryContents = try FileManager.default.contentsOfDirectory(
                 at: url,
@@ -67,7 +59,7 @@ class FileService : ObservableObject, IFileService {
         }
     }
     
-    func importFile(url: URL) {
+    private func importFile(url: URL) {
         _ = recordingService.getSecurityBookmarkFor(url: url)
         let metadataLoaderFactory : ISampleLoaderFactory = CoreaudioSampleLoaderFactory()
         let metadataLoader = metadataLoaderFactory.createMetadataLoader()
@@ -82,8 +74,8 @@ class FileService : ObservableObject, IFileService {
                                        bitdepth: UInt8(metadata.bitrate),
                                        samplerate: UInt32(metadata.sampleRate))
             
-            let document = recordingService.addRecording(metadata: rm)
-            _ = collectionService.addRecordingId(document.id)
+            let documentId = recordingService.addRecording(metadata: rm)
+            _ = collectionService.addRecordingId(documentId)
         } catch {
             print("Error getting metadata for \(url): \(error)")
         }
