@@ -19,6 +19,7 @@
 		AE0336012884459C00C22F7D /* SampleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0336002884459C00C22F7D /* SampleEditor.swift */; };
 		AE0336032884973100C22F7D /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0336022884973100C22F7D /* EditorView.swift */; };
 		AE0AAC1928C3F0BA00B4345D /* ISample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AAC1828C3F0BA00B4345D /* ISample.swift */; };
+		AE1238B02A1C0E8A007BE9FF /* ContentFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1238AF2A1C0E8A007BE9FF /* ContentFeature.swift */; };
 		AE1B8967289EFBB800FB8BF8 /* SampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B8966289EFBB800FB8BF8 /* SampleView.swift */; };
 		AE1B896A289F0B8E00FB8BF8 /* BindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B8969289F0B8E00FB8BF8 /* BindingExtensions.swift */; };
 		AE1B896C289FB8DE00FB8BF8 /* FieldWorkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B896B289FB8DE00FB8BF8 /* FieldWorkViewModel.swift */; };
@@ -115,6 +116,7 @@
 		AE0336002884459C00C22F7D /* SampleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleEditor.swift; sourceTree = "<group>"; };
 		AE0336022884973100C22F7D /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		AE0AAC1828C3F0BA00B4345D /* ISample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISample.swift; sourceTree = "<group>"; };
+		AE1238AF2A1C0E8A007BE9FF /* ContentFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFeature.swift; sourceTree = "<group>"; };
 		AE1B8966289EFBB800FB8BF8 /* SampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView.swift; sourceTree = "<group>"; };
 		AE1B8969289F0B8E00FB8BF8 /* BindingExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtensions.swift; sourceTree = "<group>"; };
 		AE1B896B289FB8DE00FB8BF8 /* FieldWorkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldWorkViewModel.swift; sourceTree = "<group>"; };
@@ -296,6 +298,23 @@
 			path = Def;
 			sourceTree = "<group>";
 		};
+		AE1238AD2A1C0E0D007BE9FF /* InfoFeature */ = {
+			isa = PBXGroup;
+			children = (
+				AE0335FE2884457100C22F7D /* InfoView.swift */,
+			);
+			path = InfoFeature;
+			sourceTree = "<group>";
+		};
+		AE1238AE2A1C0E64007BE9FF /* ContentFeature */ = {
+			isa = PBXGroup;
+			children = (
+				AE0335D32883403C00C22F7D /* ContentView.swift */,
+				AE1238AF2A1C0E8A007BE9FF /* ContentFeature.swift */,
+			);
+			path = ContentFeature;
+			sourceTree = "<group>";
+		};
 		AE1B8968289F0B7500FB8BF8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,7 +394,7 @@
 		AE764DC62886053E0060E6CC /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				AE0335D32883403C00C22F7D /* ContentView.swift */,
+				AE1238AE2A1C0E64007BE9FF /* ContentFeature */,
 				AE0336022884973100C22F7D /* EditorView.swift */,
 			);
 			path = Navigation;
@@ -384,7 +403,7 @@
 		AE764DC72886055C0060E6CC /* Editors */ = {
 			isa = PBXGroup;
 			children = (
-				AE0335FE2884457100C22F7D /* InfoView.swift */,
+				AE1238AD2A1C0E0D007BE9FF /* InfoFeature */,
 				AE0336002884459C00C22F7D /* SampleEditor.swift */,
 			);
 			path = Editors;
@@ -652,6 +671,7 @@
 				AEB429F12A16608A0030D884 /* PreviewRecordingService.swift in Sources */,
 				AE764DC52885F9FF0060E6CC /* EditorModePicker.swift in Sources */,
 				AEB4E85329FF10C90008ECD2 /* DeveloperCommands.swift in Sources */,
+				AE1238B02A1C0E8A007BE9FF /* ContentFeature.swift in Sources */,
 				AE839FCE28988331005F579C /* PreviewPersistenceController.swift in Sources */,
 				AE8C625A2A0D90C80077DAFD /* RecordingCapsule.swift in Sources */,
 				AE0335D42883403C00C22F7D /* ContentView.swift in Sources */,

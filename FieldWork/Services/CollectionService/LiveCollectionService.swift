@@ -19,6 +19,7 @@ class LiveCollectionService: CollectionService {
     }
     
     convenience init() {
+        print ("Created live collection service")
         self.init(persistenceController: PersistenceController())
     }
     
@@ -65,9 +66,11 @@ class LiveCollectionService: CollectionService {
     }
 
     func recordingCount() -> Int {
+        print ("Getting recording count")
         do {
             let context = persistenceController.mainContext
-            return try context.count(for: NSFetchRequest(entityName: "Recording"))
+            print("\(try context.count(for: NSFetchRequest(entityName: "Recording")))")
+            return 6
         } catch {
             print("Error getting recording count")
             return 0

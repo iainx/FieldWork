@@ -17,18 +17,6 @@ struct RecordingCollectionView: View {
     
     let store: StoreOf<RecordingCollection>
     
-    /*
-    var currentCollection: String? {
-        didSet {
-            if currentCollection == nil {
-                collectionItems.nsPredicate = nil
-            } else {
-                collectionItems.nsPredicate = NSPredicate(format: "name == %@", currentCollection!)
-            }
-        }
-    }
-    */
-    
     var body: some View {
         let column = GridItem(.adaptive(minimum: 150))
         
@@ -43,6 +31,9 @@ struct RecordingCollectionView: View {
                             }
                     }
                 }
+            }
+            .onAppear() {
+                viewStore.send(.fetchItems)
             }
         }
     }

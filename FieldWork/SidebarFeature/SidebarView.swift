@@ -20,9 +20,8 @@ struct SidebarView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             List(selection: viewStore.binding(\.$selectedCollection)) {
-                Text(viewStore.selectedCollection)
                 Section(header: Text("Recordings")) {
-                    Text("All \(viewStore.recordingCount)")
+                    Text("All \(viewStore.state.recordingCount)")
                         .tag("all://")
                     Text("Recent")
                         .tag("recent://")
@@ -30,7 +29,7 @@ struct SidebarView: View {
                         .tag("favourites://")
                 }
                 Section(header: Text("Collections")) {
-                    ForEach (viewStore.collections) { collection in
+                    ForEach (viewStore.state.collections) { collection in
                         Text(collection.name!)
                             .tag("collection://" + collection.name!)
                     }
@@ -43,14 +42,12 @@ struct SidebarView: View {
                 }
             }
             .listStyle(.sidebar)
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
             .toolbar {
                 ImportCommand()
             }
-            /*
-             .onReceive(collections.publisher.count()) { _ in
-             allRecordings = collections.count
-             }
-             */
         }
     }
 }
@@ -59,7 +56,7 @@ struct SidebarView_Previews: PreviewProvider {
     static let previewController = PreviewPersistenceController()
     
     static var previews: some View {
-        SidebarView(store: Store(initialState: Sidebar.State.initial,
+        SidebarView(store: Store(initialState: Sidebar.State.preview(context: previewController.mainContext),
                                  reducer: EmptyReducer()))
             .frame(width: 200)
             .environment(\.managedObjectContext, previewController.mainContext)

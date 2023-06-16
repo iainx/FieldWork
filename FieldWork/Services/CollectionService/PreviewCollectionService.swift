@@ -13,11 +13,18 @@ class PreviewCollectionService: CollectionService {
     }
     
     func getRecordingsForCollection(_ name: String?) -> [Recording] {
-        return []
+        var results: [Recording] = []
+        
+        for _ in 0...3 {
+            let recording = Recording(context: self.persistenceController.mainContext)
+            results.append(recording)
+        }
+        
+        return results
     }
     
     func recordingCount() -> Int {
-        return 0
+        return 4
     }
     
     func deleteEverything() throws {

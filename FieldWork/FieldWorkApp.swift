@@ -16,7 +16,8 @@ struct FieldWorkApp: App {
     @Dependency(\.collectionService) var collectionService
     
     @StateObject var model = FieldWorkViewModel()
-        
+    let stateStore: Store<ContentFeature.State, ContentFeature.Action> = Store(initialState: ContentFeature.State.initial) { ContentFeature() }
+    
     var body: some Scene {
         WindowGroup {
             ContentView(framesPerPixel: $model.framesPerPixel,
@@ -25,9 +26,7 @@ struct FieldWorkApp: App {
                         currentRecording: $model.selectedRecording,
                         currentCollection: $model.selectedCollection,
                         showCollectionView: $model.showCollectionView,
-                        store: Store(initialState: .initial){
-                ContentFeature()
-            })
+                        store: stateStore)
             .environmentObject(model)
             .environment(\.managedObjectContext, collectionService.persistenceController.mainContext)
         }
