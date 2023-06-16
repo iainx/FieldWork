@@ -19,7 +19,6 @@
 		AE0336012884459C00C22F7D /* SampleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0336002884459C00C22F7D /* SampleEditor.swift */; };
 		AE0336032884973100C22F7D /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0336022884973100C22F7D /* EditorView.swift */; };
 		AE0AAC1928C3F0BA00B4345D /* ISample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AAC1828C3F0BA00B4345D /* ISample.swift */; };
-		AE1238B02A1C0E8A007BE9FF /* ContentFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1238AF2A1C0E8A007BE9FF /* ContentFeature.swift */; };
 		AE1B8967289EFBB800FB8BF8 /* SampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B8966289EFBB800FB8BF8 /* SampleView.swift */; };
 		AE1B896A289F0B8E00FB8BF8 /* BindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B8969289F0B8E00FB8BF8 /* BindingExtensions.swift */; };
 		AE1B896C289FB8DE00FB8BF8 /* FieldWorkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B896B289FB8DE00FB8BF8 /* FieldWorkViewModel.swift */; };
@@ -29,7 +28,6 @@
 		AE59D3D42A18EBC9003B28D7 /* UnimplementedCollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59D3D32A18EBC9003B28D7 /* UnimplementedCollectionService.swift */; };
 		AE59D3D62A18EEA4003B28D7 /* PreviewFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59D3D52A18EEA4003B28D7 /* PreviewFileService.swift */; };
 		AE59D3D82A18EECA003B28D7 /* UnimplementedFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59D3D72A18EECA003B28D7 /* UnimplementedFileService.swift */; };
-		AE59D3DB2A18F268003B28D7 /* SidebarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59D3DA2A18F268003B28D7 /* SidebarFeature.swift */; };
 		AE6DD6F0289AF9A700EF3B4A /* FileCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD6EF289AF9A700EF3B4A /* FileCommands.swift */; };
 		AE6DD6F2289AF9DE00EF3B4A /* ImportCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD6F1289AF9DE00EF3B4A /* ImportCommand.swift */; };
 		AE6DD705289D094900EF3B4A /* MLNSampleChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD6F5289D094700EF3B4A /* MLNSampleChannel.m */; };
@@ -54,8 +52,6 @@
 		AE90B3312897224100EE6F72 /* TestablePersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B3302897224100EE6F72 /* TestablePersistenceController.swift */; };
 		AE90B3332897334800EE6F72 /* LiveRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B3322897334800EE6F72 /* LiveRecordingService.swift */; };
 		AE90B335289737DD00EE6F72 /* RecordingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90B334289737DD00EE6F72 /* RecordingServiceTests.swift */; };
-		AEA6E95D2A1264C000C00805 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = AEA6E95C2A1264C000C00805 /* ComposableArchitecture */; };
-		AEA6E95F2A12CAD400C00805 /* RecordingCollectionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA6E95E2A12CAD400C00805 /* RecordingCollectionFeature.swift */; };
 		AEA9C99A28A54DFF00A17F8A /* LiveFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA9C99928A54DFF00A17F8A /* LiveFileService.swift */; };
 		AEABCFF828A99BFE00711193 /* CaretView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABCFF728A99BFE00711193 /* CaretView.swift */; };
 		AEABCFFA28AB9C4500711193 /* Caret.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEABCFF928AB9C4500711193 /* Caret.swift */; };
@@ -75,6 +71,7 @@
 		AEB4E85329FF10C90008ECD2 /* DeveloperCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4E85229FF10C90008ECD2 /* DeveloperCommands.swift */; };
 		AEB4E8572A07020F0008ECD2 /* RecordingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4E8562A07020F0008ECD2 /* RecordingCollectionView.swift */; };
 		AEB4E85A2A0997230008ECD2 /* RecordingCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4E8592A0997230008ECD2 /* RecordingCollectionViewItem.swift */; };
+		AECB7CF42A3D09E9003D5E95 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = AECB7CF32A3D09E9003D5E95 /* Dependencies */; };
 		AEDA2DD029A6C1950087A7CE /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA2DCF29A6C1950087A7CE /* ViewCommands.swift */; };
 		AEDA2DD229A6C25D0087A7CE /* ZoomCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA2DD129A6C25D0087A7CE /* ZoomCommands.swift */; };
 		AEDE43C52887EC5800A16F66 /* FieldWorkModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AEDE43C32887EC5800A16F66 /* FieldWorkModel.xcdatamodeld */; };
@@ -116,7 +113,6 @@
 		AE0336002884459C00C22F7D /* SampleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleEditor.swift; sourceTree = "<group>"; };
 		AE0336022884973100C22F7D /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		AE0AAC1828C3F0BA00B4345D /* ISample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISample.swift; sourceTree = "<group>"; };
-		AE1238AF2A1C0E8A007BE9FF /* ContentFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFeature.swift; sourceTree = "<group>"; };
 		AE1B8966289EFBB800FB8BF8 /* SampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView.swift; sourceTree = "<group>"; };
 		AE1B8969289F0B8E00FB8BF8 /* BindingExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtensions.swift; sourceTree = "<group>"; };
 		AE1B896B289FB8DE00FB8BF8 /* FieldWorkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldWorkViewModel.swift; sourceTree = "<group>"; };
@@ -126,7 +122,6 @@
 		AE59D3D32A18EBC9003B28D7 /* UnimplementedCollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnimplementedCollectionService.swift; sourceTree = "<group>"; };
 		AE59D3D52A18EEA4003B28D7 /* PreviewFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFileService.swift; sourceTree = "<group>"; };
 		AE59D3D72A18EECA003B28D7 /* UnimplementedFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnimplementedFileService.swift; sourceTree = "<group>"; };
-		AE59D3DA2A18F268003B28D7 /* SidebarFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFeature.swift; sourceTree = "<group>"; };
 		AE6DD6EF289AF9A700EF3B4A /* FileCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCommands.swift; sourceTree = "<group>"; };
 		AE6DD6F1289AF9DE00EF3B4A /* ImportCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCommand.swift; sourceTree = "<group>"; };
 		AE6DD6F4289D094700EF3B4A /* FieldWork-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FieldWork-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -165,7 +160,6 @@
 		AE90B3302897224100EE6F72 /* TestablePersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestablePersistenceController.swift; sourceTree = "<group>"; };
 		AE90B3322897334800EE6F72 /* LiveRecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRecordingService.swift; sourceTree = "<group>"; };
 		AE90B334289737DD00EE6F72 /* RecordingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingServiceTests.swift; sourceTree = "<group>"; };
-		AEA6E95E2A12CAD400C00805 /* RecordingCollectionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCollectionFeature.swift; sourceTree = "<group>"; };
 		AEA9C99928A54DFF00A17F8A /* LiveFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFileService.swift; sourceTree = "<group>"; };
 		AEABCFF728A99BFE00711193 /* CaretView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaretView.swift; sourceTree = "<group>"; };
 		AEABCFF928AB9C4500711193 /* Caret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caret.swift; sourceTree = "<group>"; };
@@ -197,8 +191,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEA6E95D2A1264C000C00805 /* ComposableArchitecture in Frameworks */,
 				AEE1CCF729F5DCD2006B3857 /* CouchbaseLiteSwift in Frameworks */,
+				AECB7CF42A3D09E9003D5E95 /* Dependencies in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				AE0335D32883403C00C22F7D /* ContentView.swift */,
-				AE1238AF2A1C0E8A007BE9FF /* ContentFeature.swift */,
 			);
 			path = ContentFeature;
 			sourceTree = "<group>";
@@ -338,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				AE0335FC288444FA00C22F7D /* SidebarView.swift */,
-				AE59D3DA2A18F268003B28D7 /* SidebarFeature.swift */,
 			);
 			path = SidebarFeature;
 			sourceTree = "<group>";
@@ -494,7 +486,6 @@
 				AEB4E8562A07020F0008ECD2 /* RecordingCollectionView.swift */,
 				AEB4E8592A0997230008ECD2 /* RecordingCollectionViewItem.swift */,
 				AE8C62592A0D90C80077DAFD /* RecordingCapsule.swift */,
-				AEA6E95E2A12CAD400C00805 /* RecordingCollectionFeature.swift */,
 			);
 			path = RecordingCollectionFeature;
 			sourceTree = "<group>";
@@ -517,7 +508,7 @@
 			name = FieldWork;
 			packageProductDependencies = (
 				AEE1CCF629F5DCD2006B3857 /* CouchbaseLiteSwift */,
-				AEA6E95C2A1264C000C00805 /* ComposableArchitecture */,
+				AECB7CF32A3D09E9003D5E95 /* Dependencies */,
 			);
 			productName = FieldWork;
 			productReference = AE0335CE2883403C00C22F7D /* FieldWork.app */;
@@ -594,7 +585,7 @@
 			mainGroup = AE0335C52883403C00C22F7D;
 			packageReferences = (
 				AEE1CCF529F5DCD2006B3857 /* XCRemoteSwiftPackageReference "couchbase-lite-swift-ee" */,
-				AEA6E95B2A1264C000C00805 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				AECB7CF22A3D09E9003D5E95 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
 			);
 			productRefGroup = AE0335CF2883403C00C22F7D /* Products */;
 			projectDirPath = "";
@@ -671,7 +662,6 @@
 				AEB429F12A16608A0030D884 /* PreviewRecordingService.swift in Sources */,
 				AE764DC52885F9FF0060E6CC /* EditorModePicker.swift in Sources */,
 				AEB4E85329FF10C90008ECD2 /* DeveloperCommands.swift in Sources */,
-				AE1238B02A1C0E8A007BE9FF /* ContentFeature.swift in Sources */,
 				AE839FCE28988331005F579C /* PreviewPersistenceController.swift in Sources */,
 				AE8C625A2A0D90C80077DAFD /* RecordingCapsule.swift in Sources */,
 				AE0335D42883403C00C22F7D /* ContentView.swift in Sources */,
@@ -688,11 +678,9 @@
 				AE0336032884973100C22F7D /* EditorView.swift in Sources */,
 				AE6DD73E289D22B900EF3B4A /* MLNCacheManager.m in Sources */,
 				AEABD03728BC0BE600711193 /* SampleDrawingHelper.swift in Sources */,
-				AEA6E95F2A12CAD400C00805 /* RecordingCollectionFeature.swift in Sources */,
 				AEABD03528B76E3800711193 /* OverviewBar.swift in Sources */,
 				AE6DD70B289D094900EF3B4A /* MLNSampleBlockFile.m in Sources */,
 				AEB429F52A1801B10030D884 /* RecordingService.swift in Sources */,
-				AE59D3DB2A18F268003B28D7 /* SidebarFeature.swift in Sources */,
 				AEB4E85A2A0997230008ECD2 /* RecordingCollectionViewItem.swift in Sources */,
 				AE0335D22883403C00C22F7D /* FieldWorkApp.swift in Sources */,
 				AE1B8967289EFBB800FB8BF8 /* SampleView.swift in Sources */,
@@ -1048,12 +1036,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AEA6E95B2A1264C000C00805 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		AECB7CF22A3D09E9003D5E95 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			repositoryURL = "https://github.com/pointfreeco/swift-dependencies";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.53.0;
+				minimumVersion = 0.5.1;
 			};
 		};
 		AEE1CCF529F5DCD2006B3857 /* XCRemoteSwiftPackageReference "couchbase-lite-swift-ee" */ = {
@@ -1067,10 +1055,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AEA6E95C2A1264C000C00805 /* ComposableArchitecture */ = {
+		AECB7CF32A3D09E9003D5E95 /* Dependencies */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AEA6E95B2A1264C000C00805 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
+			package = AECB7CF22A3D09E9003D5E95 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = Dependencies;
 		};
 		AEE1CCF629F5DCD2006B3857 /* CouchbaseLiteSwift */ = {
 			isa = XCSwiftPackageProductDependency;

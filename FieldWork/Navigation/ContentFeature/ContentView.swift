@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-import ComposableArchitecture
 import Dependencies
 
 struct ContentView: View {
@@ -22,17 +21,11 @@ struct ContentView: View {
     @Binding var currentCollection: String?
     @Binding var showCollectionView: Bool
     
-    let store: StoreOf<ContentFeature>
-    
     var body: some View {
         NavigationView{
-            let _ = print ("Updating content view")
-            SidebarView(store: store.scope(state: \.sidebarState,
-                                           action: ContentFeature.Action.sidebar))
+            SidebarView(selectedCollection: $currentCollection)
             if showCollectionView {
-                RecordingCollectionView(currentRecording: $currentRecording,
-                                        store: store.scope(state: \.collectionState,
-                                                           action: ContentFeature.Action.recordingCollection))
+                RecordingCollectionView(currentRecording: $currentRecording)
             } else {
                 EditorView(framesPerPixel: $framesPerPixel,
                            caretPosition: $caretPosition,
@@ -70,10 +63,7 @@ struct ContentView_Previews: PreviewProvider {
                     selection: .constant(Selection()),
                     currentRecording: .constant(nil),
                     currentCollection: .constant(nil),
-                    showCollectionView: .constant(true),
-                    store: Store(initialState: .initial) {
-                        ContentFeature()
-                    })
+                    showCollectionView: .constant(true))
             .environment(\.managedObjectContext, previewController.mainContext)
     }
 }

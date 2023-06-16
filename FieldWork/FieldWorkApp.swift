@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-import ComposableArchitecture
 import Dependencies
 
 @main
@@ -16,7 +15,6 @@ struct FieldWorkApp: App {
     @Dependency(\.collectionService) var collectionService
     
     @StateObject var model = FieldWorkViewModel()
-    let stateStore: Store<ContentFeature.State, ContentFeature.Action> = Store(initialState: ContentFeature.State.initial) { ContentFeature() }
     
     var body: some Scene {
         WindowGroup {
@@ -25,8 +23,7 @@ struct FieldWorkApp: App {
                         selection: $model.selection,
                         currentRecording: $model.selectedRecording,
                         currentCollection: $model.selectedCollection,
-                        showCollectionView: $model.showCollectionView,
-                        store: stateStore)
+                        showCollectionView: $model.showCollectionView)
             .environmentObject(model)
             .environment(\.managedObjectContext, collectionService.persistenceController.mainContext)
         }
