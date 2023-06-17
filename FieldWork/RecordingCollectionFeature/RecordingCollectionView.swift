@@ -16,7 +16,7 @@ struct RecordingCollectionView: View {
     @Binding var currentRecording: RecordingMetadata?
     
     var body: some View {
-        let column = GridItem(.adaptive(minimum: 150))
+        let column = GridItem(.flexible(minimum: 150))
         
         ScrollView {
             LazyVGrid (columns: [column]) {
@@ -49,11 +49,11 @@ extension RecordingCollectionView {
     }
 }
 
-/*
 struct RecordingCollectionView_Previews: PreviewProvider {
+    static let previewController = PreviewPersistenceController()
     static var previews: some View {
         RecordingCollectionView(currentRecording: .constant(nil))
-        .frame(width: 500, height: 250)
+            .frame(width: 500, height: 250)
+            .environment(\.managedObjectContext, previewController.mainContext)
     }
 }
-*/

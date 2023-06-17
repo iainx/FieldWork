@@ -26,12 +26,12 @@ struct RecordingCollectionViewItem: View {
                 .font(.caption)
                 .padding(6)
             }
-            .frame(width: 150, height: 60)
+            .frame(height: 60)
             .background(Color.indigo)
             
             HStack {
                 Text(metadata.name)
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, alignment:.leading)
                 Button {
                     print ("Click")
                 } label: {
@@ -40,7 +40,7 @@ struct RecordingCollectionViewItem: View {
                 .buttonStyle(.borderless)
             }
             .padding(EdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 6))
-            .frame(width: 150)
+//            .frame(width: 150)
         }
         .background(Color.gray)
         .cornerRadius(6)
